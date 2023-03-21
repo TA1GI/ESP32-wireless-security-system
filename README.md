@@ -3,6 +3,10 @@ Wireless security system that can be controlled using telegram and sms.
 
 The system is mostly inspired by:https://github.com/atc1441/DiyArduinoESP232AlarmSystem
 
+
+
+
+
 Turkish
 
 Sistem şuradaki proje temel alınarak yapılmıştır : https://github.com/atc1441/DiyArduinoESP232AlarmSystem
