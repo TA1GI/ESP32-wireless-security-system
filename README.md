@@ -5,12 +5,14 @@ The system is mostly inspired by:https://github.com/atc1441/DiyArduinoESP232Alar
 
 Turkish
 
-Sistem şuradaki proje temel alınarak yapılmıştır. 
-https://github.com/atc1441/DiyArduinoESP232AlarmSystem
+Sistem şuradaki proje temel alınarak yapılmıştır : https://github.com/atc1441/DiyArduinoESP232AlarmSystem
 
 Sistemde Kullanılan bileşenler:
+
 RF alıcı
+
 RF verici
+
 GSM modülü (sim800 vs)
 
 
