@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>Güvenlik Sistemi</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/scripts.js"></script>
+
+	<style>
+		body{
+			margin-top:20px;
+			color: #1a202c;
+			text-align: left;
+			background-color: #e2e8f0;    
+		}
+		.main-body {
+			padding: 15px;
+		}
+
+		.nav-link {
+			color: #4a5568;
+		}
+		.card {
+			box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+		}
+
+		.card {
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			min-width: 0;
+			word-wrap: break-word;
+			background-color: #fff;
+			background-clip: border-box;
+			border: 0 solid rgba(0,0,0,.125);
+			border-radius: .25rem;
+		}
+
+		.card-body {
+			flex: 1 1 auto;
+			min-height: 1px;
+			padding: 1rem;
+		}
+
+		.gutters-sm {
+			margin-right: -8px;
+			margin-left: -8px;
+		}
+
+		.gutters-sm>.col, .gutters-sm>[class*=col-] {
+			padding-right: 8px;
+			padding-left: 8px;
+		}
+		.mb-3, .my-3 {
+			margin-bottom: 1rem!important;
+		}
+
+		.bg-gray-300 {
+			background-color: #e2e8f0;
+		}
+		.h-100 {
+			height: 100%!important;
+		}
+		.shadow-none {
+			box-shadow: none!important;
+		}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+
+		<h1 class="h3 mb-3">Güvenlik Sitemi Ayarları</h1>
+
+		<div class="row gutters-sm">
+			<div class="col-md-4 d-none d-md-block">
+				<div class="card">
+					<div class="card-body">
+						<nav class="nav flex-column nav-pills nav-gap-y-1">
+							<a href="#system" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Sistem Ayarları
+							</a>
+							<a href="#devices" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bug" viewBox="0 0 16 16"><path d="M4.355.522a.5.5 0 0 1 .623.333l.291.956A4.979 4.979 0 0 1 8 1c1.007 0 1.946.298 2.731.811l.29-.956a.5.5 0 1 1 .957.29l-.41 1.352A4.985 4.985 0 0 1 13 6h.5a.5.5 0 0 0 .5-.5V5a.5.5 0 0 1 1 0v.5A1.5 1.5 0 0 1 13.5 7H13v1h1.5a.5.5 0 0 1 0 1H13v1h.5a1.5 1.5 0 0 1 1.5 1.5v.5a.5.5 0 1 1-1 0v-.5a.5.5 0 0 0-.5-.5H13a5 5 0 0 1-10 0h-.5a.5.5 0 0 0-.5.5v.5a.5.5 0 1 1-1 0v-.5A1.5 1.5 0 0 1 2.5 10H3V9H1.5a.5.5 0 0 1 0-1H3V7h-.5A1.5 1.5 0 0 1 1 5.5V5a.5.5 0 0 1 1 0v.5a.5.5 0 0 0 .5.5H3c0-1.364.547-2.601 1.432-3.503l-.41-1.352a.5.5 0 0 1 .333-.623zM4 7v4a4 4 0 0 0 3.5 3.97V7H4zm4.5 0v7.97A4 4 0 0 0 12 11V7H8.5zM12 6a3.989 3.989 0 0 0-1.334-2.982A3.983 3.983 0 0 0 8 2a3.983 3.983 0 0 0-2.667 1.018A3.989 3.989 0 0 0 4 6h8z"/></svg> Kumanda ve sensörler
+							</a>
+							<a href="#remote" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 48 48"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M11 5.44578C11 4.6473 11.6473 4 12.4458 4H35.5542C36.3527 4 37 4.6473 37 5.44578V31C37 38.1797 31.1797 44 24 44V44C16.8203 44 11 38.1797 11 31V5.44578Z" stroke="#333" stroke-width="1"/><path d="M17 16H20" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 16H31" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="10" r="2" fill="#333"/><circle cx="24" cy="31" r="7" fill="none" stroke="#333" stroke-width="1"/></svg> Cihaz Kontrol
+							</a>
+							<a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Bildirimler
+							</a>
+							<a href="#wifi" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16"><path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/><path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/></svg> Bağlantı Ayarları
+							</a>
+						</nav>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-header border-bottom mb-3 d-flex d-md-none">
+						<ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
+							<li class="nav-item">
+								<a href="#system" data-toggle="tab" class="nav-link has-icon  active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
+							</li>
+							<li class="nav-item">
+								<a href="#devices" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bug" viewBox="0 0 16 16"><path d="M4.355.522a.5.5 0 0 1 .623.333l.291.956A4.979 4.979 0 0 1 8 1c1.007 0 1.946.298 2.731.811l.29-.956a.5.5 0 1 1 .957.29l-.41 1.352A4.985 4.985 0 0 1 13 6h.5a.5.5 0 0 0 .5-.5V5a.5.5 0 0 1 1 0v.5A1.5 1.5 0 0 1 13.5 7H13v1h1.5a.5.5 0 0 1 0 1H13v1h.5a1.5 1.5 0 0 1 1.5 1.5v.5a.5.5 0 1 1-1 0v-.5a.5.5 0 0 0-.5-.5H13a5 5 0 0 1-10 0h-.5a.5.5 0 0 0-.5.5v.5a.5.5 0 1 1-1 0v-.5A1.5 1.5 0 0 1 2.5 10H3V9H1.5a.5.5 0 0 1 0-1H3V7h-.5A1.5 1.5 0 0 1 1 5.5V5a.5.5 0 0 1 1 0v.5a.5.5 0 0 0 .5.5H3c0-1.364.547-2.601 1.432-3.503l-.41-1.352a.5.5 0 0 1 .333-.623zM4 7v4a4 4 0 0 0 3.5 3.97V7H4zm4.5 0v7.97A4 4 0 0 0 12 11V7H8.5zM12 6a3.989 3.989 0 0 0-1.334-2.982A3.983 3.983 0 0 0 8 2a3.983 3.983 0 0 0-2.667 1.018A3.989 3.989 0 0 0 4 6h8z"/></svg></a>
+							</li>
+							<li class="nav-item">
+								<a href="#remote" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 48 48"><rect width="48" height="48" fill="white" fill-opacity="0.01"/><path d="M11 5.44578C11 4.6473 11.6473 4 12.4458 4H35.5542C36.3527 4 37 4.6473 37 5.44578V31C37 38.1797 31.1797 44 24 44V44C16.8203 44 11 38.1797 11 31V5.44578Z" stroke="#333" stroke-width="1"/><path d="M17 16H20" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 16H31" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="10" r="2" fill="#333"/><circle cx="24" cy="31" r="7" fill="none" stroke="#333" stroke-width="1"/></svg></a>
+							</li>
+							<li class="nav-item">
+								<a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
+							</li>
+							<li class="nav-item">
+								<a href="#wifi" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wifi" viewBox="0 0 16 16"><path d="M15.384 6.115a.485.485 0 0 0-.047-.736A12.444 12.444 0 0 0 8 3C5.259 3 2.723 3.882.663 5.379a.485.485 0 0 0-.048.736.518.518 0 0 0 .668.05A11.448 11.448 0 0 1 8 4c2.507 0 4.827.802 6.716 2.164.205.148.49.13.668-.049z"/><path d="M13.229 8.271a.482.482 0 0 0-.063-.745A9.455 9.455 0 0 0 8 6c-1.905 0-3.68.56-5.166 1.526a.48.48 0 0 0-.063.745.525.525 0 0 0 .652.065A8.46 8.46 0 0 1 8 7a8.46 8.46 0 0 1 4.576 1.336c.206.132.48.108.653-.065zm-2.183 2.183c.226-.226.185-.605-.1-.75A6.473 6.473 0 0 0 8 9c-1.06 0-2.062.254-2.946.704-.285.145-.326.524-.1.75l.015.015c.16.16.407.19.611.09A5.478 5.478 0 0 1 8 10c.868 0 1.69.201 2.42.56.203.1.45.07.61-.091l.016-.015zM9.06 12.44c.196-.196.198-.52-.04-.66A1.99 1.99 0 0 0 8 11.5a1.99 1.99 0 0 0-1.02.28c-.238.14-.236.464-.04.66l.706.706a.5.5 0 0 0 .707 0l.707-.707z"/></svg></a>
+							</li>
+						</ul>
+					</div>
+					<div class="card-body tab-content">
+						<div class="tab-pane active" id="system">
+							<h6>SİSTEM AYARLARI</h6>
+							<hr>
+							<div class="alert alert-primary d-flex align-items-center" role="alert">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+								</svg>
+								<div>
+									&nbsp;Yaptığınız değişikliklerin uygulanabilmesi için sistemi yeniden başlatmanız gerekir.
+								</div>
+							</div>
+							
+							<li class="list-group-item has-icon">
+								Sistem durumu
+								<div class="small text-muted mb-3">Buradan sistemi aktif yada pasif duruma getirebilirsiniz.</div>
+								<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+									<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="sysSwitch" %SYSSTATE%>
+									<label class="custom-control-label" for="sysSwitch"></label>
+								</div>
+							</li>
+							<hr>
+							<form action="/" method="POST">
+								<ul class="list-group list-group-sm">
+										<li class="list-group-item has-icon">
+											<label class="d-block mb-0">Siren Çalma Süresi(ms)</label>
+											<div class="small text-muted mb-3">Sensörler tetiklendiğinde sirenin çalacağı süreyi milisaniye olarak giriniz.</div>
+											<input type="number" class="form-control" name="sirenTime" id="sirenTime" placeholder="Siren Çalma süresi" value="%SIRENSTATE%">
+										</li>
+								</ul>
+								<br>
+								<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+								<button type="reset" class="btn btn-light">İptal</button>
+								<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+							</form>
+						</div>
+						<div class="tab-pane" id="devices">
+							<h6>KUMANDA VE SENSÖRLER</h6>
+							<hr>
+							<div class="alert alert-primary d-flex align-items-center" role="alert">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+								</svg>
+								<div>
+									&nbsp;Yaptığınız değişikliklerin uygulanabilmesi için sistemi yeniden başlatmanız gerekir.
+								</div>
+							</div>
+							<li class="list-group-item has-icon">
+								<h6>Kumanda veya sensör nasıl eklenir?</h6> 
+								<div class="small mb-3">Öncelikle Kumandanın tuşuna basıldığında  veya sensör tetiklendiğinde gönderdiği rf kodunu bilmeniz gerekiyor.</div>
+								<div class="small mb-3">Rf kodunu öğrenmek için sistemin ana ünitesinin algılama mesafesinde kuamndanın tuşuna basın yada sensörün tetiklenmesini sağlayın.</div>
+								<div class="small mb-3">Bu ekranın ilgili bölümünde rf kodu gözükecektir. Kodu aşağıdaki formda yer alan "Rf kodu" bölümüne girin. </div>
+								<br>
+								<div class="small mb-3">SMS veya telegram ile gönderilecek sistem durum bilgi mesajının veya Sensörler tetiklendiğindeki bilgi mesajının içeriğini aşağıdaki formda yer alan "Mesaj içeriği" bölümüne girin</div>
+								<br>
+								<div class="small mb-3">Bu sistemde çeşitli seneryolara göre 5 grup vardır. RF kod algılandığında (Kumandadan tuşa basıldığında yada sensör tetiklendiğinde) şu şekilde haraket ederler:</div>
+								<div class="small mb-3">0. grup: (Kumanda) Sistemi devre dışı bırakır. Siren çalıyorsa susturur. Aktif edilmişse Telegram ve Sms ile bildirim yapar.</div>
+								<div class="small mb-3">1. grup: (Kumanda) Sistemi aktif hale getirir. Aktif edilmişse Telegram ile bildirim yapar.</div>
+								<div class="small mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken Aktif edilmişse Telegram ve Sms ile bildirim yapar.(Siren çalmaz)</div>
+								<div class="small mb-3">3. grup: (Sensör) Sistem aktif halde ise siren çalar, Aktif edilmişse Telegram ve Sms ile bildirim yapar, Sisteme girilen numaraya arama yapar.</div>
+								<div class="small mb-3">4. grup: (Kumanda) Sistem devre dışı bırakılmadan siren susturulur.</div>
+								<div class="small mb-3">Ekleyeceğiniz kumanda tuşu yada sensör hangi gruba ait ise aşağıdaki formda yer alan "Grup" bölümünden seçin.</div>
+							</li>
+							<hr>
+
+							<form action="/" method="POST">
+								<li class="list-group-item has-icon">
+									<div class="form-row">
+										<div class="col-5">
+											<label>Rf Kodu</label>
+											<input type="text" class="form-control" name="rfCode1" id="rfCode1" placeholder="RF Kod" value="%RFSTATE1%">
+										</div>
+										<div class="col-5">
+											<label>Mesaj içeriği</label>
+											<input type="text" class="form-control" name="rfMessage1" id="rfMessage1" placeholder="Mesaj" value="%MESSAGESTATE1%">
+										</div>
+										<div class="col">
+											<label>Grup</label>
+											<select class="form-control" id="rfGroup1">
+												<option value="">0</option>
+												<option value="">1</option>
+												<option value="">2</option>
+												<option value="">3</option>
+												<option value="">4</option>
+											</select>
+										</div>
+									</div>
+									<br>
+									<div class="form-row">
+										<div class="col-5">
+											<input type="text" class="form-control" name="rfCode2" id="rfCode2" placeholder="RF Kod" value="%RFSTATE2%">
+										</div>
+										<div class="col-5">
+											<input type="text" class="form-control" name="rfMessage2" id="rfMessage2" placeholder="Mesaj" value="%MESSAGESTATE2%">
+										</div>
+										<div class="col">
+											<select class="form-control" id="rfGroup2">
+												<option value="">0</option>
+												<option value="">1</option>
+												<option value="">2</option>
+												<option value="">3</option>
+												<option value="">4</option>
+											</select>
+										</div>
+									</div>
+								</li>
+								<br>
+								<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+								<button type="reset" class="btn btn-light">İptal</button>
+								<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+							</form>
+						</div>
+						<div class="tab-pane" id="remote">
+							<h6>CİHAZ KONTROL</h6>
+							<hr>
+							<div class="alert alert-primary d-flex align-items-center" role="alert">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+								</svg>
+								<div>
+									&nbsp;Yaptığınız değişikliklerin uygulanabilmesi için sistemi yeniden başlatmanız gerekir.
+								</div>
+							</div>
+							<div class="card-body">
+								<form action="/" method="POST">
+									<li class="list-group-item has-icon">
+										Sms ile sistem kontrolü
+										<div class="small text-muted mb-3">Buradan sms ile sistem kontrol özelliğini aktif yada pasif duruma getirebilirsiniz.</div>
+										<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+											<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="smsSysCtrlSwitch" %SMSSYSCTRLSTATE%>
+											<label class="custom-control-label" for="smsSysCtrlSwitch"></label>
+										</div>
+										<div id="dvSmsSysCtrlSwitch">
+										<br>
+											<ul class="list-group list-group-sm">
+												<li class="list-group-item has-icon">
+													<div class="small text-muted mb-3">Gireceğinin sms içeriğini boşluksuz ve başında # olacak şekilde giriniz.</div>
+													<div class="form-row">
+														<div class="col">
+															<label>Sistemi aktifleştirecek sms içeriği</label>
+															<input type="text" class="form-control" name="smsSysEnable" id="smsSysEnable" placeholder="Sms içeriği" value="%SYSSMSENABLE%">
+														</div>
+														<div class="col">
+															<label>Sistemi pasifleştirecek sms içeriği</label>
+															<input type="text" class="form-control" name="smsSysDisable" id="smsSysDisable" placeholder="Sms içeriği" value="%SYSSMSDISABLE%">
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</li>
+									<hr>
+									<li class="list-group-item has-icon">
+										Sms ile cihaz kontrolü
+										<div class="small text-muted mb-3">Buradan sms ile harici cihaz kontrol özelliğini aktif yada pasif duruma getirebilirsiniz.</div>
+										<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+											<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="smsCtrlSwitch" %SMSCTRLSTATE%>
+											<label class="custom-control-label" for="smsCtrlSwitch"></label>
+										</div>
+									</li>
+									<div id="dvSmsCtrlSwitch">
+										<hr>
+										<li class="list-group-item has-icon">
+											RF kod tarayıcı
+											<div class="small text-muted mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
+											<div class="alert alert-danger" role="alert">Gönderilen rf kodunu görmek için her seferinde sayfayı yenileyin.</div>
+											<p>%RFCODEESTATE%</p>
+										</li>
+										<hr>
+										<li class="list-group-item has-icon">
+											Sms ile kontrol edilecek cihazlar
+											<div class="small mb-3">Kontrol etmek istediğiniz cihaz bilgilerini bu alana giriniz.</div>
+											<div class="small mb-3">Belirlediğiniz özelliği çalıştırmak üzere sisteme gönderilecek sms içeriğini "Kontrol sms içeriği" bölümüne boşluksuz ve başında # olacak şekilde giriniz.</div>
+											<div class="small mb-3">Sisteme belirlenen mesaj gönderildiğinde, sms bildirimleri bölümüne girilen telefon numarasına gönderilecek olan bildirim mesajını bölümüne "Bildirim sms içeriği" giriniz.</div>
+											<div class="small mb-3">Sistemin algılama mesafesinde iken, cihazın kontrol etmek istediğiniz özelliğini kontrol eden kumanda tuşuna basın.</div>
+											<div class="small mb-3">Bu sayfada bulunan "RF kod tarayıcı" alanında beliren rf kodu aşağıdaki formda bulunan "Rf kodu" bölümüne girin.</div>
+										</li>
+										<hr>
+
+										<li class="list-group-item has-icon">
+											<div class="form-row">
+												<div class="col">
+													<label>Kontrol sms içeriği</label>
+												</div>
+												<div class="col">
+													<label>Bildirim sms içeriği</label>
+												</div>
+												<div class="col">
+													<label>Rf Kodu</label>
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>1</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage1" id="ctrlMessage1" placeholder="Kontrol sms içeriği" value="%CTRLSMS1%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage1" id="sendMessage1" placeholder="Bildirim sms içeriği" value="%SENDSMS1%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf1" id="sendRf1" placeholder="RF Kod" value="%SENDRFSTATE1%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>2</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage2" id="ctrlMessage2" placeholder="Kontrol sms içeriği" value="%CTRLSMS2%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage2" id="sendMessage2" placeholder="Bildirim sms içeriği" value="%SENDSMS2%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf2" id="sendRf2" placeholder="RF Kod" value="%SENDRFSTATE2%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>3</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage3" id="ctrlMessage3" placeholder="Kontrol sms içeriği" value="%CTRLSMS3%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage3" id="sendMessage3" placeholder="Bildirim sms içeriği" value="%SENDSMS3%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf3" id="sendRf3" placeholder="RF Kod" value="%SENDRFSTATE3%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>4</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage4" id="ctrlMessage4" placeholder="Kontrol sms içeriği" value="%CTRLSMS4%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage4" id="sendMessage4" placeholder="Bildirim sms içeriği" value="%SENDSMS4%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf4" id="sendRf4" placeholder="RF Kod" value="%SENDRFSTATE4%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>5</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage5" id="ctrlMessage5" placeholder="Kontrol sms içeriği" value="%CTRLSMS5%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage5" id="sendMessage5" placeholder="Bildirim sms içeriği" value="%SENDSMS5%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf5" id="sendRf5" placeholder="RF Kod" value="%SENDRFSTATE5%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>6</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage6" id="ctrlMessage6" placeholder="Kontrol sms içeriği" value="%CTRLSMS6%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage6" id="sendMessage6" placeholder="Bildirim sms içeriği" value="%SENDSMS6%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf6" id="sendRf6" placeholder="RF Kod" value="%SENDRFSTATE6%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>7</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage7" id="ctrlMessage7" placeholder="Kontrol sms içeriği" value="%CTRLSMS7%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage7" id="sendMessage7" placeholder="Bildirim sms içeriği" value="%SENDSMS7%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf7" id="sendRf7" placeholder="RF Kod" value="%SENDRFSTATE7%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>8</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage8" id="ctrlMessage8" placeholder="Kontrol sms içeriği" value="%CTRLSMS8%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage8" id="sendMessage8" placeholder="Bildirim sms içeriği" value="%SENDSMS8%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf8" id="sendRf8" placeholder="RF Kod" value="%SENDRFSTATE8%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>9</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage9" id="ctrlMessage9" placeholder="Kontrol sms içeriği" value="%CTRLSMS9%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage9" id="sendMessage9" placeholder="Bildirim sms içeriği" value="%SENDSMS9%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf9" id="sendRf9" placeholder="RF Kod" value="%SENDRFSTATE9%">
+												</div>
+											</div>
+											<br>
+											<div class="form-row">
+												<div class="col-0">
+													<label>10</label>
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="ctrlMessage0" id="ctrlMessage0" placeholder="Kontrol sms içeriği" value="%CTRLSMS0%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendMessage0" id="sendMessage0" placeholder="Bildirim sms içeriği" value="%SENDSMS0%">
+												</div>
+												<div class="col">
+													<input type="text" class="form-control" name="sendRf0" id="sendRf0" placeholder="RF Kod" value="%SENDRFSTATE0%">
+												</div>
+											</div>
+										</li>
+									</div>
+									<br>
+									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+									<button type="reset" class="btn btn-light">İptal</button>
+									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+								</form>
+							</div>
+						</div>
+						<div class="tab-pane" id="notification">
+							<h6>BİLDİRİM AYARLARI</h6>
+							<hr>
+							<div class="alert alert-primary d-flex align-items-center" role="alert">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+								</svg>
+								<div>
+									&nbsp;Yaptığınız değişikliklerin uygulanabilmesi için sistemi yeniden başlatmanız gerekir.
+								</div>
+							</div>
+							<form action="/" method="POST">
+								<div class="form-group mb-0">
+									<div class="form-group">
+										<label class="d-block mb-0">Sistem Bildirimleri</label>
+										<div class="small text-muted mb-3">Sms ve Telegram bildirimleri ile ilgili ayarları bu bölümden yapabilirsiniz.</div>
+									</div>
+
+									<ul class="list-group list-group-sm">
+										<li class="list-group-item has-icon">
+											Arama ile bildirim
+											<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+												<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="callSwitch" %CALLSWITCHSTATE%>
+												<label class="custom-control-label" for="callSwitch"></label>
+											</div>
+											<div id="dvCallSwitch">
+												<ul class="list-group list-group-sm">
+													<li class="list-group-item has-icon">
+														<label class="d-block mb-0">Aranacak numara</label>
+														<div class="small text-muted mb-3">Alarm durumunda aranacak numarayı bu alana yazınız.(Boşluksuz)</div>
+														<input type="tel" class="form-control" name="callNumber" id="callNumber" placeholder="+905555555555" value="%CALLNOSTATE%">
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li class="list-group-item has-icon">
+											SMS Bildirimleri
+											<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+												<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="smsSwitch" %SMSSWITCHSTATE%>
+												<label class="custom-control-label" for="smsSwitch"></label>
+											</div>
+											<div id="dvSmsSwitch">
+												<ul class="list-group list-group-sm">
+													<li class="list-group-item has-icon">
+														<label class="d-block mb-0">Sms gönderilecek numara</label>
+														<div class="small text-muted mb-3">Gerekli durumlarda sms gönderilecek numarayı bu alana yazınız.(Boşluksuz)</div>
+														<input type="tel" class="form-control" name="smsNumber" id="smsNumber" placeholder="+905555555555" value="%SMSNOSTATE%">
+													</li>
+												</ul>
+											</div>
+										</li>
+										<li class="list-group-item has-icon">
+											Telegram Bildirimleri
+											<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+												<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="telegramSwitch" %TLGSTATE%>
+												<label class="custom-control-label" for="telegramSwitch"></label>
+											</div>
+											<div id="dvTelegramSwitch">
+												<ul class="list-group list-group-sm">
+													<li class="list-group-item has-icon">
+														<label class="d-block mb-0">Telegram Token ve UserID</label>
+														<div class="small text-muted mb-3">Telegram Token ve UserID bilgilerini bu alanlara giriniz.</div>
+
+														<div class="form-row">
+															<div class="col">
+																<input type="text" class="form-control" name="telegramToken" id="telegramToken" placeholder="Telegram Token" value="%TOKENSTATE%">
+															</div>
+															<div class="col">
+																<input type="text" class="form-control" name="chat_id" id="chat_id" placeholder="Telegram UserID" value="%TIDSTATE%">
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<br>
+								<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+								<button type="reset" class="btn btn-light">İptal</button>
+								<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+							</form>
+						</div>
+						<div class="tab-pane" id="wifi">
+							<h6>BAĞLANTI AYARLARI</h6>
+							<hr>
+							<div class="alert alert-primary d-flex align-items-center" role="alert">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+									<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+								</svg>
+								<div>
+									&nbsp;Yaptığınız değişikliklerin uygulanabilmesi için sistemi yeniden başlatmanız gerekir.
+								</div>
+							</div>
+							<div class="card-body">
+								<form action="/" method="POST">
+									<li class="list-group-item has-icon">
+										WiFi bilgileri
+										<div class="small text-muted mb-3">Bağlanmak istediğiniz modeme ait wifi bilgilerini bu alana giriniz.</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="ssid">WiFi adı (SSID)</label>
+												<input type="text" class="form-control" id="ssid" name="ssid" placeholder="WiFi adı (SSID)" value="%SSIDSTATE%">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="password">Parola</label>
+												<input type="text" class="form-control" id="password" name="password" placeholder="Parola" value="%PASSSTATE%">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="ip">Ip adresi</label>
+												<input type="text" class="form-control" id="ip" name="ip" placeholder="Ip adresi" value="%IPSTATE%">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="gateway">Ağ geçidi</label>
+												<input type="text" class="form-control" id="gateway" name="gateway" placeholder="Ağ geçidi" value="%GATEWAYSTATE%">
+											</div>
+										</div>
+									</li>
+									<hr>
+									<li class="list-group-item has-icon">
+										Arayüz bilgileri
+										<div class="small text-muted mb-3">Cihazın web arayüz kullanıcı adı ve şifre bilgilerini ve Kablosuz Erişim Noktası (Acces point) modunda açıldığında wifi şifre bilgisini bu alana giriniz</div>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="uiName">Webui Kullanıcı Adı</label>
+												<input type="text" class="form-control" id="uiName" name="uiName" placeholder="Webui Kullanıcı Adı" value="%UINAMESTATE%">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="uiPass">Webui şifre</label>
+												<input type="text" class="form-control" id="uiPass" name="uiPass" placeholder="Webui şifre" value="%UIPASSSTATE%">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="apPass">AP WiFi Şifre</label>
+												<input type="text" class="form-control" id="apPass" name="apPass" placeholder="AP WiFi Şifre" value="%APPASSSTATE%">
+											</div>
+										</div>
+									</li>
+									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+									<button type="reset" class="btn btn-light">İptal</button>
+									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	
+	<script type="text/javascript">
+
+		function saveButton(element) {
+			//var xhr = new XMLHttpRequest();
+			//xhr.open("GET", "/update?output="+element.id+"", true);
+			//xhr.send();
+			alert("Değişiklikler kaydedilecek.");
+			setTimeout(function(){ document.location.reload(false); }, 500);
+		}
+
+		function resetButton(element) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "/reset", true);
+			xhr.send();
+		}
+
+		function toggleCheckbox(element) {
+			var xhr = new XMLHttpRequest();
+			if(element.checked){ xhr.open("GET", "/update?output="+element.id+"&state=1", true); }
+			else { xhr.open("GET", "/update?output="+element.id+"&state=0", true); }
+			xhr.send();
+		}
+
+		if( $('#smsSysCtrlSwitch').is(':checked') ){
+			$("#dvSmsSysCtrlSwitch").show();
+		}
+		else{
+			$("#dvSmsSysCtrlSwitch").hide();
+		}
+
+		$(function () {
+			$("#smsSysCtrlSwitch").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvSmsSysCtrlSwitch").show();
+				} else {
+					$("#dvSmsSysCtrlSwitch").hide();
+			}
+			});
+		});
+
+		if( $('#smsCtrlSwitch').is(':checked') ){
+			$("#dvSmsCtrlSwitch").show();
+		}
+		else{
+			$("#dvSmsCtrlSwitch").hide();
+		}
+
+		$(function () {
+			$("#smsCtrlSwitch").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvSmsCtrlSwitch").show();
+				} else {
+					$("#dvSmsCtrlSwitch").hide();
+			}
+			});
+		});
+
+		if( $('#callSwitch').is(':checked') ){
+			$("#dvCallSwitch").show();
+		}
+		else{
+			$("#dvCallSwitch").hide();
+		}
+
+		$(function () {
+			$("#callSwitch").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvCallSwitch").show();
+				} else {
+					$("#dvCallSwitch").hide();
+			}
+			});
+		});
+
+		if( $('#smsSwitch').is(':checked') ){
+			$("#dvSmsSwitch").show();
+		}
+		else{
+			$("#dvSmsSwitch").hide();
+		}
+
+		$(function () {
+			$("#smsSwitch").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvSmsSwitch").show();
+				} else {
+					$("#dvSmsSwitch").hide();
+			}
+			});
+		});
+
+		
+		if( $('#telegramSwitch').is(':checked') ){
+			$("#dvTelegramSwitch").show();
+		}
+		else{
+			$("#dvTelegramSwitch").hide();
+		}
+
+		$(function () {
+			$("#telegramSwitch").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvTelegramSwitch").show();
+				} else {
+					$("#dvTelegramSwitch").hide();
+			}
+			});
+		});
+	</script>
+</body>
+</html>
