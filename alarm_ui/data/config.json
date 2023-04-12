@@ -1,0 +1,20 @@
+{
+    "sysState": "0",
+    "sirenTime": "60000",
+    "smsSysCtrl": "0",
+    "smsSysEnable": "#AC",
+    "smsSysDisable": "#KAPAT",
+    "smsCtrl": "0",
+    "callState": "0",
+    "callNumber": "",
+    "smsState": "0",
+    "smsNumber": "",
+    "telegramState": "0",
+    "telegramToken": "",
+    "chat_id": "",
+    "ssid": "",
+    "password": "",
+    "apPass": "12345678",
+    "uiName": "admin",
+    "uiPass": "admin"
+} 
