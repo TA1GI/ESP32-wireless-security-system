@@ -611,7 +611,7 @@
 	
 	<script type="text/javascript">
 
-		function saveButton(element) {
+		function saveButton() {
 			//var xhr = new XMLHttpRequest();
 			//xhr.open("GET", "/update?output="+element.id+"", true);
 			//xhr.send();
@@ -619,7 +619,7 @@
 			setTimeout(function(){ document.location.reload(false); }, 500);
 		}
 
-		function resetButton(element) {
+		function resetButton() {
 			var xhr = new XMLHttpRequest();
 			xhr.open("GET", "/reset", true);
 			xhr.send();
