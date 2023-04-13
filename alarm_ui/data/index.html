@@ -573,7 +573,10 @@
 											</div>
 											<div class="form-group col-md-6">
 												<label for="password">Parola</label>
-												<input type="text" class="form-control" id="password" name="password" placeholder="Parola" value="%PASSSTATE%">
+												<div class="password-wrapper">
+													<input type="password" class="form-control" id="password" name="password" placeholder="Parola" value="%PASSSTATE%" oninput="toggleEyeVisibility('password')">
+													<div class="eye" onclick="togglePasswordVisibility('password')">&#x1F441;</div>
+												</div>
 											</div>
 										</div>
 									</li>
@@ -588,14 +591,21 @@
 											</div>
 											<div class="form-group col-md-6">
 												<label for="uiPass">Webui Şifre</label>
-												<input type="text" class="form-control" id="uiPass" name="uiPass" placeholder="Webui şifre" value="%UIPASSSTATE%">
+												<div class="password-wrapper">
+													<input type="password" class="form-control" id="uiPass" name="uiPass" placeholder="Webui şifre" value="%UIPASSSTATE%" oninput="toggleEyeVisibility('uiPass')">
+													<div class="eye" onclick="togglePasswordVisibility('uiPass')">&#x1F441;</div>
+												</div>
 											</div>
 											<div class="form-group col-md-6">
 												<label for="apPass">AP WiFi Şifre</label>
-												<input type="text" class="form-control" id="apPass" name="apPass" placeholder="AP WiFi Şifre" value="%APPASSSTATE%">
+												<div class="password-wrapper">
+													<input type="password" class="form-control" id="apPass" name="apPass" placeholder="AP WiFi Şifre" value="%APPASSSTATE%" oninput="toggleEyeVisibility('apPass')">
+													<div class="eye" onclick="togglePasswordVisibility('apPass')">&#x1F441;</div>
+												</div>
 											</div>
 										</div>
 									</li>
+									<br>
 									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
 									<button type="reset" class="btn btn-light">İptal</button>
 									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
@@ -717,6 +727,28 @@
 			}
 			});
 		});
+
+		function togglePasswordVisibility(id) {
+		var password = document.getElementById(id);
+		var eye = document.querySelector("#" + id + " ~ .eye");
+		if (password.type === "password") {
+			password.type = "text";
+			eye.innerHTML = "&#x1F441;&#xFE0E;"; // Disable Emoji Variation Selector
+		} else {
+			password.type = "password";
+			eye.innerHTML = "&#x1F441;";
+		}
+		}
+
+		function toggleEyeVisibility(id) {
+		var eye = document.querySelector("#" + id + " ~ .eye");
+		var password = document.getElementById(id);
+		if (password.value === "" || password.value === null) {
+			eye.style.display = "none";
+		} else {
+			eye.style.display = "block";
+		}
+		}
 	</script>
 </body>
 </html>
