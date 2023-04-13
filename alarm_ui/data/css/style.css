@@ -1872,3 +1872,23 @@ a.close.disabled {
     background-color: #fff !important;
   }
 }
+.password-wrapper {
+  position: relative;
+}
+.password-wrapper input {
+  padding-right: 30px;
+}
+.password-wrapper .eye {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+}
+.password-wrapper input:not(:placeholder-shown) + .eye {
+  display: block;
+}
+.password-wrapper .eye:hover {
+  filter: brightness(1.2);
+}
