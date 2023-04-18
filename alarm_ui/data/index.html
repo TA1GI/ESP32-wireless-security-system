@@ -177,15 +177,16 @@
 								<div class="small mb-3">Rf kodunu öğrenmek için sistemin ana ünitesinin algılama mesafesinde kuamndanın tuşuna basın yada sensörün tetiklenmesini sağlayın.</div>
 								<div class="small mb-3">Bu ekranın ilgili bölümünde rf kodu gözükecektir. Kodu aşağıdaki formda yer alan "Rf kodu" bölümüne girin. </div>
 								<br>
-								<div class="small mb-3">SMS veya telegram ile gönderilecek sistem durum bilgi mesajının veya Sensörler tetiklendiğindeki bilgi mesajının içeriğini aşağıdaki formda yer alan "Mesaj içeriği" bölümüne girin</div>
+								<div class="small mb-3">SMS veya telegram ile gönderilecek sistem durum bilgi mesajının veya Sensörler tetiklendiğindeki bilgi mesajının içeriğini aşağıdaki formda yer alan "Mesaj içeriği" bölümüne girin.</div>
+								<div class="small mb-3">ÖNEMLİ: SMS mesajlarında Türkçe karakter kullanılamıyor. SMS ile bildirim yapılacaksa Türkçe karakter kullanmayın.</div>
 								<br>
-								<div class="small mb-3">Bu sistemde çeşitli seneryolara göre 5 grup vardır. RF kod algılandığında (Kumandadan tuşa basıldığında yada sensör tetiklendiğinde) şu şekilde haraket ederler:</div>
-								<div class="small mb-3">0. grup: (Kumanda) Sistemi devre dışı bırakır. Siren çalıyorsa susturur. Aktif edilmişse Telegram ve Sms ile bildirim yapar.</div>
-								<div class="small mb-3">1. grup: (Kumanda) Sistemi aktif hale getirir. Aktif edilmişse Telegram ile bildirim yapar.</div>
-								<div class="small mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken Aktif edilmişse Telegram ve Sms ile bildirim yapar.(Siren çalmaz)</div>
-								<div class="small mb-3">3. grup: (Sensör) Sistem aktif halde ise siren çalar, Aktif edilmişse Telegram ve Sms ile bildirim yapar, Sisteme girilen numaraya arama yapar.</div>
+								<div class="small mb-3">Bu sistemde çeşitli seneryolara göre eklenebilecek 5 grup rf cihaz vardır. RF kod algılandığında (Kumandadan tuşa basıldığında yada sensör tetiklendiğinde) şu şekilde haraket ederler:</div>
+								<div class="small mb-3">0. grup: (Kumanda) Sistemi devre dışı bırakır. Siren çalıyorsa susturur. Bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar.</div>
+								<div class="small mb-3">1. grup: (Kumanda) Sistemi aktif hale getirir. Bildirim ayarlanmışsa Telegram ile bildirim yapar.</div>
+								<div class="small mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken, tetiklenirse bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar.(Siren çalmaz)</div>
+								<div class="small mb-3">3. grup: (Sensör) Sistem aktif halde iken, tetiklenirse siren çalar, bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar, Sisteme girilen numaraya arama yapar.</div>
 								<div class="small mb-3">4. grup: (Kumanda) Sistem devre dışı bırakılmadan siren susturulur.</div>
-								<div class="small mb-3">Ekleyeceğiniz kumanda tuşu yada sensör hangi gruba ait ise aşağıdaki formda yer alan "Grup" bölümünden seçin.</div>
+								<div class="small mb-3">Ekleyeceğiniz kumanda tuşu yada sensör hangi gruba ait ise aşağıdaki formda yer alan "Grup" bölümüne yazın.</div>
 							</li>
 							<hr>
 
@@ -355,6 +356,14 @@
 										</div>
 									</div>
 									<br>
+									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+									<button type="reset" class="btn btn-light">İptal</button>
+									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+								</li>
+							</form>
+							<br>
+							<form action="/" method="POST">
+								<li class="list-group-item has-icon">
 									<div class="form-row">
 										<div class="col-0">
 											<label>11</label>
@@ -505,6 +514,14 @@
 											</div>
 									</div>
 									<br>
+									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+									<button type="reset" class="btn btn-light">İptal</button>
+									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
+								</li>
+							</form>
+							<br>
+							<form action="/" method="POST">
+								<li class="list-group-item has-icon">
 									<div class="form-row">
 											<div class="col-0">
 												<label>21</label>
@@ -655,11 +672,10 @@
 											</div>
 									</div>
 									<br>
+									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
+									<button type="reset" class="btn btn-light">İptal</button>
+									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
 								</li>
-								<br>
-								<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
-								<button type="reset" class="btn btn-light">İptal</button>
-								<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
 							</form>
 						</div>
 						<div class="tab-pane" id="remote">
