@@ -1,0 +1,17 @@
+{
+    "rfMessage1": "1. Kumanda ile sistem pasif duruma getirildi.",
+    "rfMessage2": "1. Kumanda ile sistem aktif duruma getirildi.",
+    "rfMessage3": "1. Kumanda ile siren susturumdu.",
+    "rfMessage4": "2. Kumanda ile sistem pasif duruma getirildi.",
+    "rfMessage5": "2. Kumanda ile sistem aktif duruma getirildi.",
+    "rfMessage6": "2. Kumanda ile siren susturuldu.",
+    "rfMessage7": "3. Kumanda ile sistem pasif duruma getirildi",
+    "rfMessage8": "3. Kumanda ile sistem aktif duruma getirildi.",
+    "rfMessage9": "3. Kumanda ile siren susturuldu.",
+    "rfMessage10": "1. Sensorden hareket algilandi.",
+    "rfMessage11": "2. Sensorden hareket algilandi.",
+    "rfMessage12": "3. Sensorden hareket algilandi.",
+    "rfMessage13": "4. Sensorden hareket algilandi.",
+    "rfMessage14": "5. Sensorden hareket algilandi.",
+    "rfMessage15": "6. Sensorden hareket algilandi."
+    }
