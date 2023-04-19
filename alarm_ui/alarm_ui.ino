@@ -664,10 +664,6 @@ String processor(const String& var) {
     return smsSysDisable;
   }
 
-  if(var == "RFCODEESTATE") {
-    return remoteIdGet;
-  }
-
   if(var == "CALLNOSTATE") {
     return callNumber;
   }
@@ -1552,36 +1548,36 @@ void setup() {
   rfGroup29 = devices6["rfGroup29"];
   rfGroup30 = devices6["rfGroup30"];
 
-	devices[0] = {atoi(rfCode1), rfMessage1, atoi(rfGroup1)};
-	devices[1] = {atoi(rfCode2), rfMessage2, atoi(rfGroup2)};
-	devices[2] = {atoi(rfCode3), rfMessage3, atoi(rfGroup3)};
-	devices[3] = {atoi(rfCode4), rfMessage4, atoi(rfGroup4)};
-	devices[4] = {atoi(rfCode5), rfMessage5, atoi(rfGroup5)};
-	devices[5] = {atoi(rfCode6), rfMessage6, atoi(rfGroup6)};
-	devices[6] = {atoi(rfCode7), rfMessage7, atoi(rfGroup7)};
-	devices[7] = {atoi(rfCode8), rfMessage8, atoi(rfGroup8)};
-	devices[8] = {atoi(rfCode9), rfMessage9, atoi(rfGroup9)};
-	devices[9] = {atoi(rfCode10), rfMessage10, atoi(rfGroup10)};
-	devices[10] = {atoi(rfCode11), rfMessage11, atoi(rfGroup11)};
-	devices[11] = {atoi(rfCode12), rfMessage12, atoi(rfGroup12)};
-	devices[12] = {atoi(rfCode13), rfMessage13, atoi(rfGroup13)};
-	devices[13] = {atoi(rfCode14), rfMessage14, atoi(rfGroup14)};
-	devices[14] = {atoi(rfCode15), rfMessage15, atoi(rfGroup15)};
-	devices[15] = {atoi(rfCode16), rfMessage16, atoi(rfGroup16)};
-	devices[16] = {atoi(rfCode17), rfMessage17, atoi(rfGroup17)};
-	devices[17] = {atoi(rfCode18), rfMessage18, atoi(rfGroup18)};
-	devices[18] = {atoi(rfCode19), rfMessage19, atoi(rfGroup19)};
-	devices[19] = {atoi(rfCode20), rfMessage20, atoi(rfGroup20)};
-	devices[20] = {atoi(rfCode21), rfMessage21, atoi(rfGroup21)};
-	devices[21] = {atoi(rfCode22), rfMessage22, atoi(rfGroup22)};
-	devices[22] = {atoi(rfCode23), rfMessage23, atoi(rfGroup23)};
-	devices[23] = {atoi(rfCode24), rfMessage24, atoi(rfGroup24)};
-	devices[24] = {atoi(rfCode25), rfMessage25, atoi(rfGroup25)};
-	devices[25] = {atoi(rfCode26), rfMessage26, atoi(rfGroup26)};
-	devices[26] = {atoi(rfCode27), rfMessage27, atoi(rfGroup27)};
-	devices[27] = {atoi(rfCode28), rfMessage28, atoi(rfGroup28)};
-	devices[28] = {atoi(rfCode29), rfMessage29, atoi(rfGroup29)};
-	devices[29] = {atoi(rfCode30), rfMessage30, atoi(rfGroup30)};
+  devices[0] = {atoi(rfCode1), rfMessage1, atoi(rfGroup1)};
+  devices[1] = {atoi(rfCode2), rfMessage2, atoi(rfGroup2)};
+  devices[2] = {atoi(rfCode3), rfMessage3, atoi(rfGroup3)};
+  devices[3] = {atoi(rfCode4), rfMessage4, atoi(rfGroup4)};
+  devices[4] = {atoi(rfCode5), rfMessage5, atoi(rfGroup5)};
+  devices[5] = {atoi(rfCode6), rfMessage6, atoi(rfGroup6)};
+  devices[6] = {atoi(rfCode7), rfMessage7, atoi(rfGroup7)};
+  devices[7] = {atoi(rfCode8), rfMessage8, atoi(rfGroup8)};
+  devices[8] = {atoi(rfCode9), rfMessage9, atoi(rfGroup9)};
+  devices[9] = {atoi(rfCode10), rfMessage10, atoi(rfGroup10)};
+  devices[10] = {atoi(rfCode11), rfMessage11, atoi(rfGroup11)};
+  devices[11] = {atoi(rfCode12), rfMessage12, atoi(rfGroup12)};
+  devices[12] = {atoi(rfCode13), rfMessage13, atoi(rfGroup13)};
+  devices[13] = {atoi(rfCode14), rfMessage14, atoi(rfGroup14)};
+  devices[14] = {atoi(rfCode15), rfMessage15, atoi(rfGroup15)};
+  devices[15] = {atoi(rfCode16), rfMessage16, atoi(rfGroup16)};
+  devices[16] = {atoi(rfCode17), rfMessage17, atoi(rfGroup17)};
+  devices[17] = {atoi(rfCode18), rfMessage18, atoi(rfGroup18)};
+  devices[18] = {atoi(rfCode19), rfMessage19, atoi(rfGroup19)};
+  devices[19] = {atoi(rfCode20), rfMessage20, atoi(rfGroup20)};
+  devices[20] = {atoi(rfCode21), rfMessage21, atoi(rfGroup21)};
+  devices[21] = {atoi(rfCode22), rfMessage22, atoi(rfGroup22)};
+  devices[22] = {atoi(rfCode23), rfMessage23, atoi(rfGroup23)};
+  devices[23] = {atoi(rfCode24), rfMessage24, atoi(rfGroup24)};
+  devices[24] = {atoi(rfCode25), rfMessage25, atoi(rfGroup25)};
+  devices[25] = {atoi(rfCode26), rfMessage26, atoi(rfGroup26)};
+  devices[26] = {atoi(rfCode27), rfMessage27, atoi(rfGroup27)};
+  devices[27] = {atoi(rfCode28), rfMessage28, atoi(rfGroup28)};
+  devices[28] = {atoi(rfCode29), rfMessage29, atoi(rfGroup29)};
+  devices[29] = {atoi(rfCode30), rfMessage30, atoi(rfGroup30)};
 
   //config
   Serial.print("ssid: ");
@@ -1867,7 +1863,7 @@ Serial.println(rfGroup29);
 Serial.print("rfGroup30: ");
 Serial.println(rfGroup30);
 
-  sirenSure = strtoul(sirenTime, NULL, 10);
+  sirenSure = strtoul(sirenTime, NULL, 10) * 1000UL;
 
   bot.updateToken(telegramToken);
 
@@ -2647,6 +2643,10 @@ Serial.println(rfGroup30);
     request->send(LittleFS, "/index.html", "text/html", false, processor);
     delay(1000);
     ESP.restart();
+  });
+
+  server.on("/rfcodeestate", HTTP_GET, [](AsyncWebServerRequest *request){
+    request->send_P(200, "text/plain", remoteIdGet.c_str());
   });
 
   server.begin();
