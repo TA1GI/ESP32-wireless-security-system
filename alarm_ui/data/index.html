@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Güvenlik Sistemi</title>
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/scripts.js"></script>
@@ -63,6 +64,21 @@
 		}
 		.shadow-none {
 			box-shadow: none!important;
+		}
+
+		#sabit-alan {
+			position: fixed;
+			bottom: 30px;
+			left: 30px;
+			width: 350px;
+			background-color: #fff;
+			padding: 10px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		}
+
+		.response-text {
+		display: inline-block;
+		margin-left: 10px;
 		}
 	</style>
 </head>
@@ -142,8 +158,8 @@
 							<form action="/" method="POST">
 								<ul class="list-group list-group-sm">
 										<li class="list-group-item has-icon">
-											<label class="d-block mb-0">Siren Çalma Süresi(ms)</label>
-											<div class="small text-muted mb-3">Sensörler tetiklendiğinde sirenin çalacağı süreyi milisaniye olarak giriniz.</div>
+											<label class="d-block mb-0">Siren Çalma Süresi</label>
+											<div class="small text-muted mb-3">Sensörler tetiklendiğinde sirenin çalacağı süreyi saniye olarak giriniz.</div>
 											<input type="number" class="form-control" name="sirenTime" id="sirenTime" placeholder="Siren Çalma süresi" value="%SIRENSTATE%">
 										</li>
 								</ul>
@@ -164,12 +180,6 @@
 									&nbsp;Yaptığınız değişikliklerin uygulanabilmesi için sistemi yeniden başlatmanız gerekir.
 								</div>
 							</div>
-							<li class="list-group-item has-icon">
-								RF kod tarayıcı
-								<div class="small text-muted mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
-								<div class="alert alert-danger" role="alert">Gönderilen rf kodunu görmek için her seferinde sayfayı yenileyin.</div>
-								<p>%RFCODEESTATE%</p>
-							</li>
 							<br>
 							<li class="list-group-item has-icon">
 								<h6>Kumanda veya sensör nasıl eklenir?</h6> 
@@ -183,7 +193,7 @@
 								<div class="small mb-3">Bu sistemde çeşitli seneryolara göre eklenebilecek 5 grup rf cihaz vardır. RF kod algılandığında (Kumandadan tuşa basıldığında yada sensör tetiklendiğinde) şu şekilde haraket ederler:</div>
 								<div class="small mb-3">0. grup: (Kumanda) Sistemi devre dışı bırakır. Siren çalıyorsa susturur. Bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar.</div>
 								<div class="small mb-3">1. grup: (Kumanda) Sistemi aktif hale getirir. Bildirim ayarlanmışsa Telegram ile bildirim yapar.</div>
-								<div class="small mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken, tetiklenirse bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar.(Siren çalmaz)</div>
+								<div class="small mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken, tetiklenirse bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar. (Siren çalmaz)</div>
 								<div class="small mb-3">3. grup: (Sensör) Sistem aktif halde iken, tetiklenirse siren çalar, bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar, Sisteme girilen numaraya arama yapar.</div>
 								<div class="small mb-3">4. grup: (Kumanda) Sistem devre dışı bırakılmadan siren susturulur.</div>
 								<div class="small mb-3">Ekleyeceğiniz kumanda tuşu yada sensör hangi gruba ait ise aşağıdaki formda yer alan "Grup" bölümüne yazın.</div>
@@ -196,10 +206,10 @@
 										<div class="col-0">
 											<label>&nbsp;&nbsp;&nbsp;</label>
 										</div>
-										<div class="col-5">
+										<div class="col">
 											<label>Rf Kodu</label>
 										</div>
-										<div class="col-5">
+										<div class="col">
 											<label>Mesaj içeriği</label>
 										</div>
 										<div class="col">
@@ -210,13 +220,13 @@
 										<div class="col-0">
 											<label>1</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode1" id="rfCode1" placeholder="RF Kod" value="%RFSTATE1%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage1" id="rfMessage1" placeholder="Mesaj" value="%MESSAGESTATE1%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup1" id="rfGroup1" placeholder="" value="%RFGROUP1%">
 										</div>
 									</div>
@@ -225,13 +235,13 @@
 										<div class="col-0">
 											<label>2</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode2" id="rfCode2" placeholder="RF Kod" value="%RFSTATE2%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage2" id="rfMessage2" placeholder="Mesaj" value="%MESSAGESTATE2%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup2" id="rfGroup2" placeholder="" value="%RFGROUP2%">
 										</div>
 									</div>
@@ -240,13 +250,13 @@
 										<div class="col-0">
 											<label>3</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode3" id="rfCode3" placeholder="RF Kod" value="%RFSTATE3%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage3" id="rfMessage3" placeholder="Mesaj" value="%MESSAGESTATE3%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup3" id="rfGroup3" placeholder="" value="%RFGROUP3%">
 										</div>
 									</div>
@@ -255,13 +265,13 @@
 										<div class="col-0">
 											<label>4</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode4" id="rfCode4" placeholder="RF Kod" value="%RFSTATE4%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage4" id="rfMessage4" placeholder="Mesaj" value="%MESSAGESTATE4%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup4" id="rfGroup4" placeholder="" value="%RFGROUP4%">
 										</div>
 									</div>
@@ -270,13 +280,13 @@
 										<div class="col-0">
 											<label>5</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode5" id="rfCode5" placeholder="RF Kod" value="%RFSTATE5%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage5" id="rfMessage5" placeholder="Mesaj" value="%MESSAGESTATE5%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup5" id="rfGroup5" placeholder="" value="%RFGROUP5%">
 										</div>
 									</div>
@@ -285,13 +295,13 @@
 										<div class="col-0">
 											<label>6</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode6" id="rfCode6" placeholder="RF Kod" value="%RFSTATE6%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage6" id="rfMessage6" placeholder="Mesaj" value="%MESSAGESTATE6%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup6" id="rfGroup6" placeholder="" value="%RFGROUP6%">
 										</div>
 									</div>
@@ -300,13 +310,13 @@
 										<div class="col-0">
 											<label>7</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode7" id="rfCode7" placeholder="RF Kod" value="%RFSTATE7%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage7" id="rfMessage7" placeholder="Mesaj" value="%MESSAGESTATE7%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup7" id="rfGroup7" placeholder="" value="%RFGROUP7%">
 										</div>
 									</div>
@@ -315,13 +325,13 @@
 										<div class="col-0">
 											<label>8</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode8" id="rfCode8" placeholder="RF Kod" value="%RFSTATE8%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage8" id="rfMessage8" placeholder="Mesaj" value="%MESSAGESTATE8%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup8" id="rfGroup8" placeholder="" value="%RFGROUP8%">
 										</div>
 									</div>
@@ -330,13 +340,13 @@
 										<div class="col-0">
 											<label>9</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode9" id="rfCode9" placeholder="RF Kod" value="%RFSTATE9%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage9" id="rfMessage9" placeholder="Mesaj" value="%MESSAGESTATE9%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup9" id="rfGroup9" placeholder="" value="%RFGROUP9%">
 										</div>
 									</div>
@@ -345,13 +355,13 @@
 										<div class="col-0">
 											<label>10</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode10" id="rfCode10" placeholder="RF Kod" value="%RFSTATE10%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage10" id="rfMessage10" placeholder="Mesaj" value="%MESSAGESTATE10%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup10" id="rfGroup10" placeholder="" value="%RFGROUP10%">
 										</div>
 									</div>
@@ -368,13 +378,13 @@
 										<div class="col-0">
 											<label>11</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode11" id="rfCode11" placeholder="RF Kod" value="%RFSTATE11%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage11" id="rfMessage11" placeholder="Mesaj" value="%MESSAGESTATE11%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup11" id="rfGroup11" placeholder="" value="%RFGROUP11%">
 										</div>
 									</div>
@@ -383,13 +393,13 @@
 										<div class="col-0">
 											<label>12</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode12" id="rfCode12" placeholder="RF Kod" value="%RFSTATE12%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage12" id="rfMessage12" placeholder="Mesaj" value="%MESSAGESTATE12%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup12" id="rfGroup12" placeholder="" value="%RFGROUP12%">
 										</div>
 									</div>
@@ -398,13 +408,13 @@
 										<div class="col-0">
 											<label>13</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode13" id="rfCode13" placeholder="RF Kod" value="%RFSTATE13%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage13" id="rfMessage13" placeholder="Mesaj" value="%MESSAGESTATE13%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup13" id="rfGroup13" placeholder="" value="%RFGROUP13%">
 										</div>
 									</div>
@@ -413,13 +423,13 @@
 										<div class="col-0">
 											<label>14</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode14" id="rfCode14" placeholder="RF Kod" value="%RFSTATE14%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage14" id="rfMessage14" placeholder="Mesaj" value="%MESSAGESTATE14%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup14" id="rfGroup14" placeholder="" value="%RFGROUP14%">
 										</div>
 									</div>
@@ -428,13 +438,13 @@
 										<div class="col-0">
 											<label>15</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode15" id="rfCode15" placeholder="RF Kod" value="%RFSTATE15%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage15" id="rfMessage15" placeholder="Mesaj" value="%MESSAGESTATE15%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup15" id="rfGroup15" placeholder="" value="%RFGROUP15%">
 										</div>
 									</div>
@@ -443,13 +453,13 @@
 										<div class="col-0">
 											<label>16</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode16" id="rfCode16" placeholder="RF Kod" value="%RFSTATE16%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage16" id="rfMessage16" placeholder="Mesaj" value="%MESSAGESTATE16%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup16" id="rfGroup16" placeholder="" value="%RFGROUP16%">
 										</div>
 									</div>
@@ -458,13 +468,13 @@
 											<div class="col-0">
 												<label>17</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode17" id="rfCode17" placeholder="RF Kod" value="%RFSTATE17%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage17" id="rfMessage17" placeholder="Mesaj" value="%MESSAGESTATE17%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup17" id="rfGroup17" placeholder="" value="%RFGROUP17%">
 											</div>
 									</div>
@@ -473,13 +483,13 @@
 											<div class="col-0">
 												<label>18</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode18" id="rfCode18" placeholder="RF Kod" value="%RFSTATE18%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage18" id="rfMessage18" placeholder="Mesaj" value="%MESSAGESTATE18%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup18" id="rfGroup18" placeholder="" value="%RFGROUP18%">
 											</div>
 									</div>
@@ -488,13 +498,13 @@
 											<div class="col-0">
 												<label>19</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode19" id="rfCode19" placeholder="RF Kod" value="%RFSTATE19%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage19" id="rfMessage19" placeholder="Mesaj" value="%MESSAGESTATE19%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup19" id="rfGroup19" placeholder="" value="%RFGROUP19%">
 											</div>
 									</div>
@@ -503,13 +513,13 @@
 											<div class="col-0">
 												<label>20</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode20" id="rfCode20" placeholder="RF Kod" value="%RFSTATE20%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage20" id="rfMessage20" placeholder="Mesaj" value="%MESSAGESTATE20%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup20" id="rfGroup20" placeholder="" value="%RFGROUP20%">
 											</div>
 									</div>
@@ -526,13 +536,13 @@
 											<div class="col-0">
 												<label>21</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode21" id="rfCode21" placeholder="RF Kod" value="%RFSTATE21%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage21" id="rfMessage21" placeholder="Mesaj" value="%MESSAGESTATE21%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup21" id="rfGroup21" placeholder="" value="%RFGROUP21%">
 											</div>
 									</div>
@@ -541,13 +551,13 @@
 											<div class="col-0">
 												<label>22</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode22" id="rfCode22" placeholder="RF Kod" value="%RFSTATE22%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage22" id="rfMessage22" placeholder="Mesaj" value="%MESSAGESTATE22%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup22" id="rfGroup22" placeholder="" value="%RFGROUP22%">
 											</div>
 									</div>
@@ -556,13 +566,13 @@
 											<div class="col-0">
 												<label>23</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode23" id="rfCode23" placeholder="RF Kod" value="%RFSTATE23%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage23" id="rfMessage23" placeholder="Mesaj" value="%MESSAGESTATE23%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup23" id="rfGroup23" placeholder="" value="%RFGROUP23%">
 											</div>
 									</div>
@@ -571,13 +581,13 @@
 											<div class="col-0">
 												<label>24</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode24" id="rfCode24" placeholder="RF Kod" value="%RFSTATE24%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage24" id="rfMessage24" placeholder="Mesaj" value="%MESSAGESTATE24%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup24" id="rfGroup24" placeholder="" value="%RFGROUP24%">
 											</div>
 									</div>
@@ -586,13 +596,13 @@
 											<div class="col-0">
 												<label>25</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode25" id="rfCode25" placeholder="RF Kod" value="%RFSTATE25%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage25" id="rfMessage25" placeholder="Mesaj" value="%MESSAGESTATE25%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup25" id="rfGroup25" placeholder="" value="%RFGROUP25%">
 											</div>
 									</div>
@@ -601,13 +611,13 @@
 											<div class="col-0">
 												<label>26</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode26" id="rfCode26" placeholder="RF Kod" value="%RFSTATE26%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage26" id="rfMessage26" placeholder="Mesaj" value="%MESSAGESTATE26%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup26" id="rfGroup26" placeholder="" value="%RFGROUP26%">
 											</div>
 									</div>
@@ -616,13 +626,13 @@
 										<div class="col-0">
 											<label>27</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode27" id="rfCode27" placeholder="RF Kod" value="%RFSTATE27%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage27" id="rfMessage27" placeholder="Mesaj" value="%MESSAGESTATE27%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup27" id="rfGroup27" placeholder="" value="%RFGROUP27%">
 										</div>
 									</div>
@@ -631,13 +641,13 @@
 										<div class="col-0">
 											<label>28</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode28" id="rfCode28" placeholder="RF Kod" value="%RFSTATE28%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage28" id="rfMessage28" placeholder="Mesaj" value="%MESSAGESTATE28%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup28" id="rfGroup28" placeholder="" value="%RFGROUP28%">
 										</div>
 									</div>
@@ -646,13 +656,13 @@
 										<div class="col-0">
 											<label>29</label>
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfCode29" id="rfCode29" placeholder="RF Kod" value="%RFSTATE29%">
 										</div>
 										<div class="col">
 											<input type="text" class="form-control" name="rfMessage29" id="rfMessage29" placeholder="Mesaj" value="%MESSAGESTATE29%">
 										</div>
-										<div class="col-2">
+										<div class="col">
 											<input type="text" class="form-control" name="rfGroup29" id="rfGroup29" placeholder="" value="%RFGROUP29%">
 										</div>
 									</div>
@@ -661,13 +671,13 @@
 											<div class="col-0">
 												<label>30</label>
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfCode30" id="rfCode30" placeholder="RF Kod" value="%RFSTATE30%">
 											</div>
 											<div class="col">
 												<input type="text" class="form-control" name="rfMessage30" id="rfMessage30" placeholder="Mesaj" value="%MESSAGESTATE30%">
 											</div>
-											<div class="col-2">
+											<div class="col">
 												<input type="text" class="form-control" name="rfGroup30" id="rfGroup30" placeholder="" value="%RFGROUP30%">
 											</div>
 									</div>
@@ -677,6 +687,13 @@
 									<button type="button" class="btn btn-danger" value="Submit" onclick="resetButton(this)">Sistemi Yeniden Başlat</button>
 								</li>
 							</form>
+
+							<div id="sabit-alan">
+								<h6>RF kod tarayıcı</h6>
+								<div class="small mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
+								<button class="copy-button1">Kodu Kopyala</button>
+								<span id="rfcodeestate1" class="response-text"></span>
+							</div>
 						</div>
 						<div class="tab-pane" id="remote">
 							<h6>CİHAZ KONTROL</h6>
@@ -727,13 +744,6 @@
 										</div>
 									</li>
 									<div id="dvSmsCtrlSwitch">
-										<hr>
-										<li class="list-group-item has-icon">
-											RF kod tarayıcı
-											<div class="small text-muted mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
-											<div class="alert alert-danger" role="alert">Gönderilen rf kodunu görmek için her seferinde sayfayı yenileyin.</div>
-											<p>%RFCODEESTATE%</p>
-										</li>
 										<hr>
 										<li class="list-group-item has-icon">
 											Sms ile kontrol edilecek cihazlar
@@ -910,6 +920,13 @@
 												</div>
 											</div>
 										</li>
+
+										<div id="sabit-alan">
+											<h6>RF kod tarayıcı</h6>
+											<div class="small mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
+											<button type="button" class="copy-button2">Kodu Kopyala</button>
+											<span id="rfcodeestate2" class="response-text"></span>
+										</div>
 									</div>
 									<br>
 									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
@@ -982,12 +999,14 @@
 														<div class="small text-muted mb-3">Telegram Token ve UserID bilgilerini bu alanlara giriniz.</div>
 
 														<div class="form-row">
-															<div class="col">
-																<input type="text" class="form-control" name="telegramToken" id="telegramToken" placeholder="Telegram Token" value="%TOKENSTATE%">
-															</div>
-															<div class="col">
-																<input type="text" class="form-control" name="chat_id" id="chat_id" placeholder="Telegram UserID" value="%TIDSTATE%">
-															</div>
+														<div class="form-group col-md-6">
+															<label for="uiName">Telegram Token</label>
+															<input type="text" class="form-control" name="telegramToken" id="telegramToken" placeholder="Telegram Token" value="%TOKENSTATE%">
+														</div>
+														<div class="form-group col-md-6">
+															<label for="uiPass">Telegram UserID</label>
+															<input type="text" class="form-control" name="chat_id" id="chat_id" placeholder="Telegram UserID" value="%TIDSTATE%">
+														</div>
 														</div>
 													</li>
 												</ul>
@@ -1199,6 +1218,47 @@
 		} else {
 			eye.style.display = "block";
 		}
+		}
+
+		const button1 = document.querySelector('.copy-button1');
+		const button2 = document.querySelector('.copy-button2');
+		const responseTextElements = document.querySelectorAll('.response-text');
+
+		button1.addEventListener('click', function() {
+		const responseText = this.nextElementSibling.innerHTML;
+		copyToClipboard(responseText);
+		this.innerHTML = 'Kopyalandı';
+		setTimeout(() => {
+			this.innerHTML = 'Kodu Kopyala';
+		}, 3000);
+		});
+
+		button2.addEventListener('click', function() {
+		const responseText = this.nextElementSibling.innerHTML;
+		copyToClipboard(responseText);
+		this.innerHTML = 'Kopyalandı';
+		setTimeout(() => {
+			this.innerHTML = 'Kodu Kopyala';
+		}, 3000);
+		});
+
+		setInterval(function() {
+		fetch('/rfcodeestate')
+			.then(response => response.text())
+			.then(text => {
+			responseTextElements.forEach(element => {
+				element.innerHTML = text;
+			});
+			});
+		}, 1000);
+
+		function copyToClipboard(text) {
+		const el = document.createElement('textarea');
+		el.value = text;
+		document.body.appendChild(el);
+		el.select();
+		document.execCommand('copy');
+		document.body.removeChild(el);
 		}
 	</script>
 </body>
