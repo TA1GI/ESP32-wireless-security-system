@@ -1,6 +1,6 @@
 {
     "sysState": "0",
-    "sirenTime": "60000",
+    "sirenTime": "60",
     "smsSysCtrl": "0",
     "smsSysEnable": "#AC",
     "smsSysDisable": "#KAPAT",
