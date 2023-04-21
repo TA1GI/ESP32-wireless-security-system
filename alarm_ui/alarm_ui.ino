@@ -23,6 +23,8 @@ const char* PARAM_INPUT_2 = "password";
 const char* PARAM_INPUT_5 = "sirenTime";
 const char* PARAM_INPUT_6 = "callNumber";
 const char* PARAM_INPUT_7 = "smsNumber";
+const char* PARAM_INPUT_3 = "smsNumber2";
+const char* PARAM_INPUT_4 = "smsNumber3";
 const char* PARAM_INPUT_8 = "telegramToken";
 const char* PARAM_INPUT_9 = "chat_id";
 const char* PARAM_INPUT_10 = "output";
@@ -173,6 +175,8 @@ const char* apPass; // access point şifresi
 const char* sirenTime;
 const char* callNumber;
 const char* smsNumber;
+const char* smsNumber2;
+const char* smsNumber3;
 const char* telegramToken;
 const char* chat_id;
 const char* sysState;
@@ -180,9 +184,12 @@ const char* smsSysCtrl;
 const char* smsSysEnable;
 const char* smsSysDisable;
 const char* smsCtrl;
+const char* tlgCtrl;
 String remoteIdGet;
 const char* callState;
 const char* smsState;
+const char* smsState2;
+const char* smsState3;
 const char* telegramState;
 const char* uiName;
 const char* uiPass;
@@ -556,10 +563,131 @@ void handleNewMessages(int numNewMessages) {
       welcome += "/aktif : Sistemi Devreye Alma\n";
       welcome += "/pasif : Sistemi Devreden Çıkartma\n";
       welcome += "/durum : Sistem Durumu\n";
-      welcome += "/liste : Bilinen tüm cihazları listeler \n";
-      welcome += "/dinle : RF kodları dinleme-algılama modunu değiştirmek için\n";
-      welcome += "/baslat veya /yardim : Komutları göstermek için\n";
+      welcome += "/liste : Bilinen tüm cihazları listeler\n";
+      welcome += "/kontrol : Kontrol edilebilir cihazları listeler\n";
+      welcome += "/dinle : RF kodları dinleme-algılama modunu değiştirir\n";
+      welcome += "/baslat veya /yardim : Komutları gösterir\n";
       bot.sendMessage(chat_id, welcome, "Markdown");
+    }
+
+    else if (text == "/kontrolac") {
+      config["tlgCtrl"] = "1";
+      writeFile(LittleFS, "/config.json", config);
+      tlgCtrl = "1";
+      bot.sendMessage(chat_id, "Telegram Cihaz Kontrol aktif edildi.", "");
+    }
+
+    else if (text == "/kontrolkapat") {
+      config["tlgCtrl"] = "0";
+      writeFile(LittleFS, "/config.json", config);
+      tlgCtrl = "0";
+      bot.sendMessage(chat_id, "Telegram Cihaz Kontrol devre dışı.", "");
+    }
+
+    else if (text == "/kontrol") {
+      if(strcmp(tlgCtrl,"0")) {
+        String welcome = "Telegtam Cihaz Kontrol: AKTİF\n";
+        welcome += "/kontrolac : Telegram Cihaz Kontrol aktif edilir\n";
+        welcome += "/kontrolkapat : Telegram Cihaz Kontrol devre dışı bırakılır\n";
+        welcome += "/" + String(ctrlMessage1) + " Bildirim: " + String(sendMessage1) +  " RF Kod: " + String(sendRf1) + "\n";
+        welcome += "/" + String(ctrlMessage2) + " Bildirim: " + String(sendMessage2) +  " RF Kod: " + String(sendRf2) + "\n";
+        welcome += "/" + String(ctrlMessage3) + " Bildirim: " + String(sendMessage3) +  " RF Kod: " + String(sendRf3) + "\n";
+        welcome += "/" + String(ctrlMessage4) + " Bildirim: " + String(sendMessage4) +  " RF Kod: " + String(sendRf4) + "\n";
+        welcome += "/" + String(ctrlMessage5) + " Bildirim: " + String(sendMessage5) +  " RF Kod: " + String(sendRf5) + "\n";
+        welcome += "/" + String(ctrlMessage6) + " Bildirim: " + String(sendMessage6) +  " RF Kod: " + String(sendRf6) + "\n";
+        welcome += "/" + String(ctrlMessage7) + " Bildirim: " + String(sendMessage7) +  " RF Kod: " + String(sendRf7) + "\n";
+        welcome += "/" + String(ctrlMessage8) + " Bildirim: " + String(sendMessage8) +  " RF Kod: " + String(sendRf8) + "\n";
+        welcome += "/" + String(ctrlMessage9) + " Bildirim: " + String(sendMessage9) +  " RF Kod: " + String(sendRf9) + "\n";
+        welcome += "/" + String(ctrlMessage0) + " Bildirim: " + String(sendMessage0) +  " RF Kod: " + String(sendRf0) + "\n";
+        bot.sendMessage(chat_id, welcome, "Markdown");
+      }else {
+        String welcome = "Telegtam Cihaz Kontrol: PASİF\n";
+        welcome += "/kontrolac : Telegram Cihaz Kontrol aktif edilir\n";
+        welcome += "/kontrolkapat : Telegram Cihaz Kontrol devre dışı bırakılır\n";
+        welcome += "/" + String(ctrlMessage1) + " Bildirim: " + String(sendMessage1) +  " RF Kod: " + String(sendRf1) + "\n";
+        welcome += "/" + String(ctrlMessage2) + " Bildirim: " + String(sendMessage2) +  " RF Kod: " + String(sendRf2) + "\n";
+        welcome += "/" + String(ctrlMessage3) + " Bildirim: " + String(sendMessage3) +  " RF Kod: " + String(sendRf3) + "\n";
+        welcome += "/" + String(ctrlMessage4) + " Bildirim: " + String(sendMessage4) +  " RF Kod: " + String(sendRf4) + "\n";
+        welcome += "/" + String(ctrlMessage5) + " Bildirim: " + String(sendMessage5) +  " RF Kod: " + String(sendRf5) + "\n";
+        welcome += "/" + String(ctrlMessage6) + " Bildirim: " + String(sendMessage6) +  " RF Kod: " + String(sendRf6) + "\n";
+        welcome += "/" + String(ctrlMessage7) + " Bildirim: " + String(sendMessage7) +  " RF Kod: " + String(sendRf7) + "\n";
+        welcome += "/" + String(ctrlMessage8) + " Bildirim: " + String(sendMessage8) +  " RF Kod: " + String(sendRf8) + "\n";
+        welcome += "/" + String(ctrlMessage9) + " Bildirim: " + String(sendMessage9) +  " RF Kod: " + String(sendRf9) + "\n";
+        welcome += "/" + String(ctrlMessage0) + " Bildirim: " + String(sendMessage0) +  " RF Kod: " + String(sendRf0) + "\n";
+        bot.sendMessage(chat_id, welcome, "Markdown");
+      }
+    }
+
+    if(strcmp(tlgCtrl,"0")) {
+      if (text == String("/") + String(ctrlMessage1)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage1);
+        rfReceiver.send(atol(sendRf1), 24);
+        bot.sendMessage(chat_id, sendMessage1, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage2)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage2);
+        rfReceiver.send(atol(sendRf2), 24);
+        bot.sendMessage(chat_id, sendMessage2, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage3)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage3);
+        rfReceiver.send(atol(sendRf3), 24);
+        bot.sendMessage(chat_id, sendMessage3, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage4)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage4);
+        rfReceiver.send(atol(sendRf4), 24);
+        bot.sendMessage(chat_id, sendMessage4, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage5)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage5);
+        rfReceiver.send(atol(sendRf5), 24);
+        bot.sendMessage(chat_id, sendMessage5, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage6)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage6);
+        rfReceiver.send(atol(sendRf6), 24);
+        bot.sendMessage(chat_id, sendMessage6, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage7)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage7);
+        rfReceiver.send(atol(sendRf7), 24);
+        bot.sendMessage(chat_id, sendMessage7, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage8)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage8);
+        rfReceiver.send(atol(sendRf8), 24);
+        bot.sendMessage(chat_id, sendMessage8, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage9)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage9);
+        rfReceiver.send(atol(sendRf9), 24);
+        bot.sendMessage(chat_id, sendMessage9, "");
+      }
+
+      if (text == String("/") + String(ctrlMessage0)) {
+        Serial.print("Telegram cihaz kontrol : ");
+        Serial.println(sendMessage0);
+        rfReceiver.send(atol(sendRf0), 24);
+        bot.sendMessage(chat_id, sendMessage0, "");
+      }
     }
   }
 }
@@ -670,6 +798,14 @@ String processor(const String& var) {
 
   if(var == "SMSNOSTATE") {
     return smsNumber;
+  }
+
+  if(var == "SMSNOSTATE2") {
+    return smsNumber2;
+  }
+
+  if(var == "SMSNOSTATE3") {
+    return smsNumber3;
   }
 
   if(var == "TOKENSTATE") {
@@ -1196,6 +1332,16 @@ if(var == "RFGROUP30") {
     return smsCtrl1;
   }
 
+  if(var == "TLGCTRLSTATE") {
+    String tlgCtrl1;
+    if(strcmp(tlgCtrl,"0")){
+      tlgCtrl1 ="checked";
+    }else{
+      tlgCtrl1 ="";
+    }
+    return tlgCtrl1;
+  }
+
   if(var == "CALLSWITCHSTATE") {
     String callState1;
     if(strcmp(callState,"0")){
@@ -1214,6 +1360,26 @@ if(var == "RFGROUP30") {
       smsState1 ="";
     }
     return smsState1;
+  }
+
+  if(var == "SMSSWITCHSTATE2") {
+    String smsState12;
+    if(strcmp(smsState2,"0")){
+      smsState12 ="checked";
+    }else{
+      smsState12 ="";
+    }
+    return smsState12;
+  }
+
+  if(var == "SMSSWITCHSTATE3") {
+    String smsState13;
+    if(strcmp(smsState3,"0")){
+      smsState13 ="checked";
+    }else{
+      smsState13 ="";
+    }
+    return smsState13;
   }
 
   if(var == "TLGSTATE") {
@@ -1247,6 +1413,49 @@ void sendSMS(String message) {
 
   // End AT command with a ^Z, ASCII code 26
   Serial2.println((char)26);
+
+  if(strcmp(smsState2,"0")){
+    delay(3000);
+    // AT command to set SIM900 to SMS mode
+    Serial2.println("AT+CMGF=1\r\n");
+    delay(100);
+
+    // USE INTERNATIONAL FORMAT CODE FOR MOBILE NUMBERS
+    Serial2.print("AT+CMGS=\"");
+    Serial2.print(smsNumber2);
+    Serial2.println("\"\r\n");
+    delay(500);
+
+    // Send the SMS
+    Serial2.println(message);
+    delay(500);
+
+    // End AT command with a ^Z, ASCII code 26
+    Serial2.println((char)26);
+
+  }
+
+
+  if(strcmp(smsState3,"0")){
+    delay(3000);
+    // AT command to set SIM900 to SMS mode
+    Serial2.println("AT+CMGF=1\r\n");
+    delay(100);
+
+    // USE INTERNATIONAL FORMAT CODE FOR MOBILE NUMBERS
+    Serial2.print("AT+CMGS=\"");
+    Serial2.print(smsNumber3);
+    Serial2.println("\"\r\n");
+    delay(500);
+
+    // Send the SMS
+    Serial2.println(message);
+    delay(500);
+
+    // End AT command with a ^Z, ASCII code 26
+    Serial2.println((char)26);
+    
+  }
 }
 
 
@@ -1259,6 +1468,9 @@ void SmsSysControl() {
     digitalWrite(sistemPasifLed, LOW);
     config["sysState"] = "1";
     writeFile(LittleFS, "/config.json", config);
+    if(strcmp(telegramState,"0")){
+      bot.sendMessage(chat_id, "Sistem Sms ile Aktif Duruma Getirildi", "");
+    }
     if(strcmp(smsState,"0")){
       String message = "Sistem Sms ile Aktif Duruma Getirildi";
       sendSMS(message);
@@ -1275,6 +1487,9 @@ void SmsSysControl() {
     config["sysState"] = "0";
     writeFile(LittleFS, "/config.json", config);
     Serial.println("Sms ile sistem pasifleştirildiği için siren susturuldu");
+    if(strcmp(telegramState,"0")){
+      bot.sendMessage(chat_id, "Sistem Sms ile Pasif Duruma Getirildi", "");
+    }
     if(strcmp(smsState,"0")){
       String message = "Sistem Sms ile Pasif Duruma Getirildi";
       sendSMS(message);
@@ -1291,9 +1506,11 @@ void SmsSysControl() {
       }
       textMessage = "";
     } else {
+      if(strcmp(smsState,"0")){
       String message = "Durum: Sistem Devre Disi";
       sendSMS(message);
       textMessage = "";
+      }
     }
   }
 
@@ -1302,7 +1519,7 @@ void SmsSysControl() {
 void SMScontrol() {
 
   //Sms ile cihaza komut gönderiyoruz
-  if (textMessage.indexOf(ctrlMessage1) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage1)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf1), 24);
     String message = sendMessage1;
     sendSMS(message);
@@ -1310,7 +1527,7 @@ void SMScontrol() {
     textMessage = "";
   }
 
-  if (textMessage.indexOf(ctrlMessage2) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage2)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf2), 24);
     String message = sendMessage2;
     sendSMS(message);
@@ -1318,7 +1535,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage3) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage3)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf3), 24);
     String message = sendMessage3;
     sendSMS(message);
@@ -1326,7 +1543,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage4) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage4)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf4), 24);
     String message = sendMessage4;
     sendSMS(message);
@@ -1334,7 +1551,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage5) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage5)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf5), 24);
     String message = sendMessage5;
     sendSMS(message);
@@ -1342,7 +1559,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage6) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage6)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf6), 24);
     String message = sendMessage6;
     sendSMS(message);
@@ -1350,7 +1567,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage7) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage7)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf7), 24);
     String message = sendMessage7;
     sendSMS(message);
@@ -1358,7 +1575,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage8) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage8)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf8), 24);
     String message = sendMessage8;
     sendSMS(message);
@@ -1366,7 +1583,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage9) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage9)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf9), 24);
     String message = sendMessage9;
     sendSMS(message);
@@ -1374,7 +1591,7 @@ void SMScontrol() {
     textMessage = "";
   }
   
-  if (textMessage.indexOf(ctrlMessage0) >= 0) { //Gönderilecek sms içeriği
+  if (textMessage.indexOf("#" + String(ctrlMessage0)) >= 0) { //Gönderilecek sms içeriği
     rfReceiver.send(atol(sendRf0), 24);
     String message = sendMessage0;
     sendSMS(message);
@@ -1405,6 +1622,8 @@ void setup() {
   sirenTime = config["sirenTime"];
   callNumber = config["callNumber"];
   smsNumber = config["smsNumber"];
+  smsNumber2 = config["smsNumber2"];
+  smsNumber3 = config["smsNumber3"];
   telegramToken = config["telegramToken"];
   chat_id = config["chat_id"];
   sysState = config["sysState"];
@@ -1412,8 +1631,11 @@ void setup() {
   smsSysEnable = config["smsSysEnable"];
   smsSysDisable = config["smsSysDisable"];
   smsCtrl = config["smsCtrl"];
+  tlgCtrl = config["tlgCtrl"];
   callState = config["callState"];
   smsState = config["smsState"];
+  smsState2 = config["smsState2"];
+  smsState3 = config["smsState3"];
   telegramState = config["telegramState"];
   apPass = config["apPass"];
   uiName = config["uiName"];
@@ -1590,6 +1812,10 @@ void setup() {
   Serial.println(callNumber);
   Serial.print("smsNumber: ");
   Serial.println(smsNumber);
+  Serial.print("smsNumber2: ");
+  Serial.println(smsNumber2);
+  Serial.print("smsNumber3: ");
+  Serial.println(smsNumber3);
   Serial.print("telegramToken: ");
   Serial.println(telegramToken);
   Serial.print("chat_id: ");
@@ -1604,10 +1830,16 @@ void setup() {
   Serial.println(smsSysDisable);
   Serial.print("smsCtrl: ");
   Serial.println(smsCtrl);
+  Serial.print("tlgCtrl: ");
+  Serial.println(tlgCtrl);
   Serial.print("callState: ");
   Serial.println(callState);
   Serial.print("smsState: ");
   Serial.println(smsState);
+  Serial.print("smsState2: ");
+  Serial.println(smsState2);
+  Serial.print("smsState3: ");
+  Serial.println(smsState3);
   Serial.print("telegramState: ");
   Serial.println(telegramState);
   Serial.print("apPass: ");
@@ -1974,6 +2206,16 @@ Serial.println(rfGroup30);
         // HTTP POST smsNumber value
         if (p->name() == PARAM_INPUT_7) {
           config["smsNumber"] = p->value().c_str();
+          writeFile(LittleFS, "/config.json", config);
+        }
+        // HTTP POST smsNumber2 value
+        if (p->name() == PARAM_INPUT_3) {
+          config["smsNumber2"] = p->value().c_str();
+          writeFile(LittleFS, "/config.json", config);
+        }
+        // HTTP POST smsNumber3 value
+        if (p->name() == PARAM_INPUT_4) {
+          config["smsNumber3"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST telegramToken value
@@ -2617,6 +2859,11 @@ Serial.println(rfGroup30);
         writeFile(LittleFS, "/config.json", config);
       }
 
+      if(paramOutput == "tlgCtrlSwitch"){
+        config["tlgCtrl"] = paramState;
+        writeFile(LittleFS, "/config.json", config);
+      }
+
       if(paramOutput == "callSwitch"){
         config["callState"] = paramState;
         writeFile(LittleFS, "/config.json", config);
@@ -2624,6 +2871,16 @@ Serial.println(rfGroup30);
 
       if(paramOutput == "smsSwitch"){
         config["smsState"] = paramState;
+        writeFile(LittleFS, "/config.json", config);
+      }
+
+      if(paramOutput == "smsSwitch2"){
+        config["smsState2"] = paramState;
+        writeFile(LittleFS, "/config.json", config);
+      }
+
+      if(paramOutput == "smsSwitch3"){
+        config["smsState3"] = paramState;
         writeFile(LittleFS, "/config.json", config);
       }
 
