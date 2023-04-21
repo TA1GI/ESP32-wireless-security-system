@@ -183,20 +183,21 @@
 							<br>
 							<li class="list-group-item has-icon">
 								<h6>Kumanda veya sensör nasıl eklenir?</h6> 
-								<div class="small mb-3">Öncelikle Kumandanın tuşuna basıldığında  veya sensör tetiklendiğinde gönderdiği rf kodunu bilmeniz gerekiyor.</div>
-								<div class="small mb-3">Rf kodunu öğrenmek için sistemin ana ünitesinin algılama mesafesinde kuamndanın tuşuna basın yada sensörün tetiklenmesini sağlayın.</div>
-								<div class="small mb-3">Bu ekranın ilgili bölümünde rf kodu gözükecektir. Kodu aşağıdaki formda yer alan "Rf kodu" bölümüne girin. </div>
+								<div class="mb-3">Öncelikle Kumandanın tuşuna basıldığında  veya sensör tetiklendiğinde gönderdiği rf kodunu bilmeniz gerekiyor.</div>
+								<div class="mb-3">Rf kodunu öğrenmek için sistemin ana ünitesinin algılama mesafesinde kuamndanın tuşuna basın yada sensörün tetiklenmesini sağlayın.</div>
+								<div class="mb-3">Bu ekranın ilgili bölümünde rf kodu gözükecektir. Kodu aşağıdaki formda yer alan "Rf kodu" bölümüne girin. </div>
 								<br>
-								<div class="small mb-3">SMS veya telegram ile gönderilecek sistem durum bilgi mesajının veya Sensörler tetiklendiğindeki bilgi mesajının içeriğini aşağıdaki formda yer alan "Mesaj içeriği" bölümüne girin.</div>
-								<div class="small mb-3">ÖNEMLİ: SMS mesajlarında Türkçe karakter kullanılamıyor. SMS ile bildirim yapılacaksa Türkçe karakter kullanmayın.</div>
+								<div class="mb-3">SMS veya telegram ile gönderilecek sistem durum bilgi mesajının veya Sensörler tetiklendiğindeki bilgi mesajının içeriğini aşağıdaki formda yer alan "Mesaj içeriği" bölümüne girin.</div>
+								<span style="color:red" class="mb-3">ÖNEMLİ: </span><span class="mb-3">SMS mesajlarında Türkçe karakter kullanılamıyor. SMS ile bildirim yapılacaksa Türkçe karakter kullanmayın.</span>
 								<br>
-								<div class="small mb-3">Bu sistemde çeşitli seneryolara göre eklenebilecek 5 grup rf cihaz vardır. RF kod algılandığında (Kumandadan tuşa basıldığında yada sensör tetiklendiğinde) şu şekilde haraket ederler:</div>
-								<div class="small mb-3">0. grup: (Kumanda) Sistemi devre dışı bırakır. Siren çalıyorsa susturur. Bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar.</div>
-								<div class="small mb-3">1. grup: (Kumanda) Sistemi aktif hale getirir. Bildirim ayarlanmışsa Telegram ile bildirim yapar.</div>
-								<div class="small mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken, tetiklenirse bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar. (Siren çalmaz)</div>
-								<div class="small mb-3">3. grup: (Sensör) Sistem aktif halde iken, tetiklenirse siren çalar, bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar, Sisteme girilen numaraya arama yapar.</div>
-								<div class="small mb-3">4. grup: (Kumanda) Sistem devre dışı bırakılmadan siren susturulur.</div>
-								<div class="small mb-3">Ekleyeceğiniz kumanda tuşu yada sensör hangi gruba ait ise aşağıdaki formda yer alan "Grup" bölümüne yazın.</div>
+								<br>
+								<div class="mb-3">Bu sistemde çeşitli seneryolara göre eklenebilecek 5 grup rf cihaz vardır. RF kod algılandığında (Kumandadan tuşa basıldığında yada sensör tetiklendiğinde) şu şekilde haraket ederler:</div>
+								<div class="mb-3">0. grup: (Kumanda) Sistemi devre dışı bırakır. Siren çalıyorsa susturur. Bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar.</div>
+								<div class="mb-3">1. grup: (Kumanda) Sistemi aktif hale getirir. Bildirim ayarlanmışsa Telegram ile bildirim yapar.</div>
+								<div class="mb-3">2. grup: (Sensör) Sistem aktif yada pasif durumda iken, tetiklenirse bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar. (Siren çalmaz)</div>
+								<div class="mb-3">3. grup: (Sensör) Sistem aktif halde iken, tetiklenirse siren çalar, bildirim ayarlanmışsa Telegram ve Sms ile bildirim yapar, Sisteme girilen numaraya arama yapar.</div>
+								<div class="mb-3">4. grup: (Kumanda) Sistem devre dışı bırakılmadan siren susturulur.</div>
+								<div class="mb-3">Ekleyeceğiniz kumanda tuşu yada sensör hangi gruba ait ise aşağıdaki formda yer alan "Grup" bölümüne yazın.</div>
 							</li>
 							<hr>
 
@@ -736,6 +737,19 @@
 									</li>
 									<hr>
 									<li class="list-group-item has-icon">
+										<h6>Sms ve Telegram ile cihaz kontrol talimatları</h6>
+										<div class="mb-3">Kontrol etmek istediğiniz cihaz bilgilerini bu alana giriniz.</div>
+										<div class="mb-3">Belirlediğiniz özelliği çalıştırmak üzere sisteme gönderilecek sms veya telegram mesajı içeriğini "Kontrol mesaj içeriği" bölümüne boşluksuz ve Türkçe karakter OLMAYACAK şekilde giriniz.</div>
+										<div class="mb-3">Sisteme belirlenen mesaj gönderildiğinde, SMS Bildirimleri bölümüne girilen telefon numarasına ve/veya Telegram Bildirimleri bölümüne girilen telegram hesabına gönderilecek olan bildirim mesajını"Bildirim mesaj içeriği" bölümüne  giriniz.</div>
+										<div class="mb-3">Sistemin algılama mesafesinde iken, cihazın kontrol etmek istediğiniz özelliğini kontrol eden kumanda tuşuna basın.</div>
+										<div class="mb-3">Bu sayfada bulunan "RF kod tarayıcı" alanında beliren rf kodu aşağıdaki formda bulunan "Rf kodu" bölümüne girin.</div>
+										<br>
+										<span class="mb-3" style="color:red">Dikkat! </span><span class="mb-3">Sms gönderirken mesajın başında "#" karakteri olacak şekilde göndermelisiniz. Örnek: "#KEPENK"</span>
+										<br>
+										<span class="mb-3" style="color:red">Dikkat! </span><span class="mb-3">Telegram ile mesaj gönderirken mesajın başında "/" karakteri olacak şekilde göndermelisiniz Örnek: "/KEPENK"</span>
+									</li>
+									<hr>
+									<li class="list-group-item has-icon">
 										Sms ile cihaz kontrolü
 										<div class="small text-muted mb-3">Buradan sms ile harici cihaz kontrol özelliğini aktif yada pasif duruma getirebilirsiniz.</div>
 										<div class="custom-control custom-control-nolabel custom-switch ml-auto">
@@ -743,190 +757,188 @@
 											<label class="custom-control-label" for="smsCtrlSwitch"></label>
 										</div>
 									</li>
-									<div id="dvSmsCtrlSwitch">
-										<hr>
-										<li class="list-group-item has-icon">
-											Sms ile kontrol edilecek cihazlar
-											<div class="small mb-3">Kontrol etmek istediğiniz cihaz bilgilerini bu alana giriniz.</div>
-											<div class="small mb-3">Belirlediğiniz özelliği çalıştırmak üzere sisteme gönderilecek sms içeriğini "Kontrol sms içeriği" bölümüne boşluksuz ve başında # olacak şekilde giriniz.</div>
-											<div class="small mb-3">Sisteme belirlenen mesaj gönderildiğinde, sms bildirimleri bölümüne girilen telefon numarasına gönderilecek olan bildirim mesajını bölümüne "Bildirim sms içeriği" giriniz.</div>
-											<div class="small mb-3">Sistemin algılama mesafesinde iken, cihazın kontrol etmek istediğiniz özelliğini kontrol eden kumanda tuşuna basın.</div>
-											<div class="small mb-3">Bu sayfada bulunan "RF kod tarayıcı" alanında beliren rf kodu aşağıdaki formda bulunan "Rf kodu" bölümüne girin.</div>
-										</li>
-										<hr>
-
-										<li class="list-group-item has-icon">
-											<div class="form-row">
-												<div class="col-0">
-													<label>&nbsp;&nbsp;&nbsp;</label>
-												</div>
-												<div class="col">
-													<label>Kontrol sms içeriği</label>
-												</div>
-												<div class="col">
-													<label>Bildirim sms içeriği</label>
-												</div>
-												<div class="col">
-													<label>Rf Kodu</label>
-												</div>
-											</div>
-											<div class="form-row">
-												<div class="col-0">
-													<label>1</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage1" id="ctrlMessage1" placeholder="Kontrol sms içeriği" value="%CTRLSMS1%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage1" id="sendMessage1" placeholder="Bildirim sms içeriği" value="%SENDSMS1%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf1" id="sendRf1" placeholder="RF Kod" value="%SENDRFSTATE1%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>2</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage2" id="ctrlMessage2" placeholder="Kontrol sms içeriği" value="%CTRLSMS2%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage2" id="sendMessage2" placeholder="Bildirim sms içeriği" value="%SENDSMS2%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf2" id="sendRf2" placeholder="RF Kod" value="%SENDRFSTATE2%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>3</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage3" id="ctrlMessage3" placeholder="Kontrol sms içeriği" value="%CTRLSMS3%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage3" id="sendMessage3" placeholder="Bildirim sms içeriği" value="%SENDSMS3%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf3" id="sendRf3" placeholder="RF Kod" value="%SENDRFSTATE3%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>4</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage4" id="ctrlMessage4" placeholder="Kontrol sms içeriği" value="%CTRLSMS4%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage4" id="sendMessage4" placeholder="Bildirim sms içeriği" value="%SENDSMS4%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf4" id="sendRf4" placeholder="RF Kod" value="%SENDRFSTATE4%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>5</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage5" id="ctrlMessage5" placeholder="Kontrol sms içeriği" value="%CTRLSMS5%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage5" id="sendMessage5" placeholder="Bildirim sms içeriği" value="%SENDSMS5%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf5" id="sendRf5" placeholder="RF Kod" value="%SENDRFSTATE5%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>6</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage6" id="ctrlMessage6" placeholder="Kontrol sms içeriği" value="%CTRLSMS6%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage6" id="sendMessage6" placeholder="Bildirim sms içeriği" value="%SENDSMS6%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf6" id="sendRf6" placeholder="RF Kod" value="%SENDRFSTATE6%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>7</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage7" id="ctrlMessage7" placeholder="Kontrol sms içeriği" value="%CTRLSMS7%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage7" id="sendMessage7" placeholder="Bildirim sms içeriği" value="%SENDSMS7%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf7" id="sendRf7" placeholder="RF Kod" value="%SENDRFSTATE7%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>8</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage8" id="ctrlMessage8" placeholder="Kontrol sms içeriği" value="%CTRLSMS8%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage8" id="sendMessage8" placeholder="Bildirim sms içeriği" value="%SENDSMS8%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf8" id="sendRf8" placeholder="RF Kod" value="%SENDRFSTATE8%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>9</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage9" id="ctrlMessage9" placeholder="Kontrol sms içeriği" value="%CTRLSMS9%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage9" id="sendMessage9" placeholder="Bildirim sms içeriği" value="%SENDSMS9%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf9" id="sendRf9" placeholder="RF Kod" value="%SENDRFSTATE9%">
-												</div>
-											</div>
-											<br>
-											<div class="form-row">
-												<div class="col-0">
-													<label>10</label>
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="ctrlMessage0" id="ctrlMessage0" placeholder="Kontrol sms içeriği" value="%CTRLSMS0%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendMessage0" id="sendMessage0" placeholder="Bildirim sms içeriği" value="%SENDSMS0%">
-												</div>
-												<div class="col">
-													<input type="text" class="form-control" name="sendRf0" id="sendRf0" placeholder="RF Kod" value="%SENDRFSTATE0%">
-												</div>
-											</div>
-										</li>
-
-										<div id="sabit-alan">
-											<h6>RF kod tarayıcı</h6>
-											<div class="small mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
-											<button type="button" class="copy-button2">Kodu Kopyala</button>
-											<span id="rfcodeestate2" class="response-text"></span>
+									<hr>
+									<li class="list-group-item has-icon">
+										Telegram ile cihaz kontrolü
+										<div class="small text-muted mb-3">Buradan Telegram ile harici cihaz kontrol özelliğini aktif yada pasif duruma getirebilirsiniz.</div>
+										<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+											<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="tlgCtrlSwitch" %TLGCTRLSTATE%>
+											<label class="custom-control-label" for="tlgCtrlSwitch"></label>
 										</div>
+									</li>
+									<hr>
+
+									<li class="list-group-item has-icon">
+										<div class="form-row">
+											<div class="col-0">
+												<label>&nbsp;&nbsp;&nbsp;</label>
+											</div>
+											<div class="col">
+												<label>Kontrol mesaj içeriği</label>
+											</div>
+											<div class="col">
+												<label>Bildirim mesaj içeriği</label>
+											</div>
+											<div class="col">
+												<label>Rf Kodu</label>
+											</div>
+										</div>
+										<div class="form-row">
+											<div class="col-0">
+												<label>1</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage1" id="ctrlMessage1" placeholder="Kontrol sms içeriği" value="%CTRLSMS1%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage1" id="sendMessage1" placeholder="Bildirim sms içeriği" value="%SENDSMS1%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf1" id="sendRf1" placeholder="RF Kod" value="%SENDRFSTATE1%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>2</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage2" id="ctrlMessage2" placeholder="Kontrol sms içeriği" value="%CTRLSMS2%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage2" id="sendMessage2" placeholder="Bildirim sms içeriği" value="%SENDSMS2%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf2" id="sendRf2" placeholder="RF Kod" value="%SENDRFSTATE2%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>3</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage3" id="ctrlMessage3" placeholder="Kontrol sms içeriği" value="%CTRLSMS3%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage3" id="sendMessage3" placeholder="Bildirim sms içeriği" value="%SENDSMS3%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf3" id="sendRf3" placeholder="RF Kod" value="%SENDRFSTATE3%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>4</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage4" id="ctrlMessage4" placeholder="Kontrol sms içeriği" value="%CTRLSMS4%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage4" id="sendMessage4" placeholder="Bildirim sms içeriği" value="%SENDSMS4%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf4" id="sendRf4" placeholder="RF Kod" value="%SENDRFSTATE4%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>5</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage5" id="ctrlMessage5" placeholder="Kontrol sms içeriği" value="%CTRLSMS5%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage5" id="sendMessage5" placeholder="Bildirim sms içeriği" value="%SENDSMS5%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf5" id="sendRf5" placeholder="RF Kod" value="%SENDRFSTATE5%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>6</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage6" id="ctrlMessage6" placeholder="Kontrol sms içeriği" value="%CTRLSMS6%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage6" id="sendMessage6" placeholder="Bildirim sms içeriği" value="%SENDSMS6%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf6" id="sendRf6" placeholder="RF Kod" value="%SENDRFSTATE6%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>7</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage7" id="ctrlMessage7" placeholder="Kontrol sms içeriği" value="%CTRLSMS7%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage7" id="sendMessage7" placeholder="Bildirim sms içeriği" value="%SENDSMS7%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf7" id="sendRf7" placeholder="RF Kod" value="%SENDRFSTATE7%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>8</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage8" id="ctrlMessage8" placeholder="Kontrol sms içeriği" value="%CTRLSMS8%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage8" id="sendMessage8" placeholder="Bildirim sms içeriği" value="%SENDSMS8%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf8" id="sendRf8" placeholder="RF Kod" value="%SENDRFSTATE8%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>9</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage9" id="ctrlMessage9" placeholder="Kontrol sms içeriği" value="%CTRLSMS9%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage9" id="sendMessage9" placeholder="Bildirim sms içeriği" value="%SENDSMS9%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf9" id="sendRf9" placeholder="RF Kod" value="%SENDRFSTATE9%">
+											</div>
+										</div>
+										<br>
+										<div class="form-row">
+											<div class="col-0">
+												<label>10</label>
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="ctrlMessage0" id="ctrlMessage0" placeholder="Kontrol sms içeriği" value="%CTRLSMS0%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendMessage0" id="sendMessage0" placeholder="Bildirim sms içeriği" value="%SENDSMS0%">
+											</div>
+											<div class="col">
+												<input type="text" class="form-control" name="sendRf0" id="sendRf0" placeholder="RF Kod" value="%SENDRFSTATE0%">
+											</div>
+										</div>
+									</li>
+
+									<div id="sabit-alan">
+										<h6>RF kod tarayıcı</h6>
+										<div class="small mb-3">Bir cihazdan Rf kod gönderdiğinizde bu alanda gözükür.</div>
+										<button type="button" class="copy-button2">Kodu Kopyala</button>
+										<span id="rfcodeestate2" class="response-text"></span>
 									</div>
 									<br>
 									<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
@@ -970,6 +982,7 @@
 												</ul>
 											</div>
 										</li>
+										<br>
 										<li class="list-group-item has-icon">
 											SMS Bildirimleri
 											<div class="custom-control custom-control-nolabel custom-switch ml-auto">
@@ -979,13 +992,37 @@
 											<div id="dvSmsSwitch">
 												<ul class="list-group list-group-sm">
 													<li class="list-group-item has-icon">
-														<label class="d-block mb-0">Sms gönderilecek numara</label>
-														<div class="small text-muted mb-3">Gerekli durumlarda sms gönderilecek numarayı bu alana yazınız.(Boşluksuz)</div>
+														<label class="d-block mb-0">Sms gönderilecek 1. numara</label>
+														<div class="small text-muted mb-3">Gerekli durumlarda sms gönderilecek 1. numarayı bu alana yazınız.(Boşluksuz)</div>
 														<input type="tel" class="form-control" name="smsNumber" id="smsNumber" placeholder="+905555555555" value="%SMSNOSTATE%">
 													</li>
 												</ul>
+												<hr/>
+												2. numaraya sms gönder
+												<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+													<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="smsSwitch2" %SMSSWITCHSTATE2%>
+													<label class="custom-control-label" for="smsSwitch2"></label>
+												</div>
+												<div id="dvSmsSwitch2">
+													<label class="d-block mb-0">Sms gönderilecek 2. numara</label>
+													<div class="small text-muted mb-3">Gerekli durumlarda sms gönderilecek 2. numarayı bu alana yazınız.(Boşluksuz)</div>
+													<input type="tel" class="form-control" name="smsNumber2" id="smsNumber2" placeholder="+905555555555" value="%SMSNOSTATE2%">
+												</div>
+
+												<hr/>
+												3. numaraya sms gönder
+												<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+													<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="smsSwitch3" %SMSSWITCHSTATE3%>
+													<label class="custom-control-label" for="smsSwitch3"></label>
+												</div>
+												<div id="dvSmsSwitch3">
+													<label class="d-block mb-0">Sms gönderilecek 3. numara</label>
+													<div class="small text-muted mb-3">Gerekli durumlarda sms gönderilecek 3. numarayı bu alana yazınız.(Boşluksuz)</div>
+													<input type="tel" class="form-control" name="smsNumber3" id="smsNumber3" placeholder="+905555555555" value="%SMSNOSTATE3%">
+												</div>
 											</div>
 										</li>
+										<br>
 										<li class="list-group-item has-icon">
 											Telegram Bildirimleri
 											<div class="custom-control custom-control-nolabel custom-switch ml-auto">
@@ -1129,23 +1166,6 @@
 			});
 		});
 
-		if( $('#smsCtrlSwitch').is(':checked') ){
-			$("#dvSmsCtrlSwitch").show();
-		}
-		else{
-			$("#dvSmsCtrlSwitch").hide();
-		}
-
-		$(function () {
-			$("#smsCtrlSwitch").click(function () {
-				if ($(this).is(":checked")) {
-					$("#dvSmsCtrlSwitch").show();
-				} else {
-					$("#dvSmsCtrlSwitch").hide();
-			}
-			});
-		});
-
 		if( $('#callSwitch').is(':checked') ){
 			$("#dvCallSwitch").show();
 		}
@@ -1176,6 +1196,40 @@
 					$("#dvSmsSwitch").show();
 				} else {
 					$("#dvSmsSwitch").hide();
+			}
+			});
+		});
+
+		if( $('#smsSwitch2').is(':checked') ){
+			$("#dvSmsSwitch2").show();
+		}
+		else{
+			$("#dvSmsSwitch2").hide();
+		}
+
+		$(function () {
+			$("#smsSwitch2").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvSmsSwitch2").show();
+				} else {
+					$("#dvSmsSwitch2").hide();
+			}
+			});
+		});
+
+		if( $('#smsSwitch3').is(':checked') ){
+			$("#dvSmsSwitch3").show();
+		}
+		else{
+			$("#dvSmsSwitch3").hide();
+		}
+
+		$(function () {
+			$("#smsSwitch3").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvSmsSwitch3").show();
+				} else {
+					$("#dvSmsSwitch3").hide();
 			}
 			});
 		});
