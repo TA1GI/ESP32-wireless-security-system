@@ -6,171 +6,28 @@
 #include "FS.h"
 #include <LittleFS.h>
 #include <ArduinoJson.h>
-
-// ----------------------------
-// Additional Libraries - each one of these will need to be installed.
-// ----------------------------
 #include <RCSwitch.h>// https://github.com/sui77/rc-switch
 #include <UniversalTelegramBot.h> //https://github.com/witnessmenow/Universal-Arduino-Telegram-Bot
 
+//RF alıcı ve verici için değişken ve pin tanımlaması
+const int rfReceiverPin = 18;
+const int rfTransmitterPin = 19;
+
+//Durum ledleri için değişken ve pin tanımlıyoruz
+#define sistemAktifLed 12
+#define sistemPasifLed 13
+
+//Siren için değişken ve pin tanımlıyoruz
+#define siren 2
 
 // Create AsyncWebServer object on port 80
 AsyncWebServer server(80);
 
-// Search for parameter in HTTP POST request
-const char* PARAM_INPUT_1 = "ssid";
-const char* PARAM_INPUT_2 = "password";
-const char* PARAM_INPUT_5 = "sirenTime";
-const char* PARAM_INPUT_6 = "callNumber";
-const char* PARAM_INPUT_7 = "smsNumber";
-const char* PARAM_INPUT_3 = "smsNumber2";
-const char* PARAM_INPUT_4 = "smsNumber3";
-const char* PARAM_INPUT_8 = "telegramToken";
-const char* PARAM_INPUT_9 = "chat_id";
-const char* PARAM_INPUT_10 = "output";
-const char* PARAM_INPUT_11 = "state";
-const char* PARAM_INPUT_12 = "apPass";
-const char* PARAM_INPUT_13 = "uiName";
-const char* PARAM_INPUT_14 = "uiPass";
-const char* PARAM_INPUT_15 = "smsSysEnable";
-const char* PARAM_INPUT_16 = "smsSysDisable";
-//sms control
-const char* PARAM_INPUT_17 = "ctrlMessage1";
-const char* PARAM_INPUT_18 = "ctrlMessage2";
-const char* PARAM_INPUT_19 = "ctrlMessage3";
-const char* PARAM_INPUT_20 = "ctrlMessage4";
-const char* PARAM_INPUT_21 = "ctrlMessage5";
-const char* PARAM_INPUT_22 = "ctrlMessage6";
-const char* PARAM_INPUT_23 = "ctrlMessage7";
-const char* PARAM_INPUT_24 = "ctrlMessage8";
-const char* PARAM_INPUT_25 = "ctrlMessage9";
-const char* PARAM_INPUT_26 = "ctrlMessage0";
-
-const char* PARAM_INPUT_27 = "sendMessage1";
-const char* PARAM_INPUT_28 = "sendMessage2";
-const char* PARAM_INPUT_29 = "sendMessage3";
-const char* PARAM_INPUT_30 = "sendMessage4";
-const char* PARAM_INPUT_31 = "sendMessage5";
-const char* PARAM_INPUT_32 = "sendMessage6";
-const char* PARAM_INPUT_33 = "sendMessage7";
-const char* PARAM_INPUT_34 = "sendMessage8";
-const char* PARAM_INPUT_35 = "sendMessage9";
-const char* PARAM_INPUT_36 = "sendMessage0";
-
-const char* PARAM_INPUT_37 = "sendRf1";
-const char* PARAM_INPUT_38 = "sendRf2";
-const char* PARAM_INPUT_39 = "sendRf3";
-const char* PARAM_INPUT_40 = "sendRf4";
-const char* PARAM_INPUT_41 = "sendRf5";
-const char* PARAM_INPUT_42 = "sendRf6";
-const char* PARAM_INPUT_43 = "sendRf7";
-const char* PARAM_INPUT_44 = "sendRf8";
-const char* PARAM_INPUT_45 = "sendRf9";
-const char* PARAM_INPUT_46 = "sendRf0";
-
-//Devices
-const char* PARAM_INPUT_47 = "rfCode1";
-const char* PARAM_INPUT_48 = "rfCode2";
-const char* PARAM_INPUT_49 = "rfCode3";
-const char* PARAM_INPUT_50 = "rfCode4";
-const char* PARAM_INPUT_51 = "rfCode5";
-const char* PARAM_INPUT_52 = "rfCode6";
-const char* PARAM_INPUT_53 = "rfCode7";
-const char* PARAM_INPUT_54 = "rfCode8";
-const char* PARAM_INPUT_55 = "rfCode9";
-const char* PARAM_INPUT_56 = "rfCode10";
-const char* PARAM_INPUT_57 = "rfCode11";
-const char* PARAM_INPUT_58 = "rfCode12";
-const char* PARAM_INPUT_59 = "rfCode13";
-const char* PARAM_INPUT_60 = "rfCode14";
-const char* PARAM_INPUT_61 = "rfCode15";
-const char* PARAM_INPUT_62 = "rfCode16";
-const char* PARAM_INPUT_63 = "rfCode17";
-const char* PARAM_INPUT_64 = "rfCode18";
-const char* PARAM_INPUT_65 = "rfCode19";
-const char* PARAM_INPUT_66 = "rfCode20";
-const char* PARAM_INPUT_67 = "rfCode21";
-const char* PARAM_INPUT_68 = "rfCode22";
-const char* PARAM_INPUT_69 = "rfCode23";
-const char* PARAM_INPUT_70 = "rfCode24";
-const char* PARAM_INPUT_71 = "rfCode25";
-const char* PARAM_INPUT_72 = "rfCode26";
-const char* PARAM_INPUT_73 = "rfCode27";
-const char* PARAM_INPUT_74 = "rfCode28";
-const char* PARAM_INPUT_75 = "rfCode29";
-const char* PARAM_INPUT_76 = "rfCode30";
-
-const char* PARAM_INPUT_77 = "rfMessage1";
-const char* PARAM_INPUT_78 = "rfMessage2";
-const char* PARAM_INPUT_79 = "rfMessage3";
-const char* PARAM_INPUT_80 = "rfMessage4";
-const char* PARAM_INPUT_81 = "rfMessage5";
-const char* PARAM_INPUT_82 = "rfMessage6";
-const char* PARAM_INPUT_83 = "rfMessage7";
-const char* PARAM_INPUT_84 = "rfMessage8";
-const char* PARAM_INPUT_85 = "rfMessage9";
-const char* PARAM_INPUT_86 = "rfMessage10";
-const char* PARAM_INPUT_87 = "rfMessage11";
-const char* PARAM_INPUT_88 = "rfMessage12";
-const char* PARAM_INPUT_89 = "rfMessage13";
-const char* PARAM_INPUT_90 = "rfMessage14";
-const char* PARAM_INPUT_91 = "rfMessage15";
-const char* PARAM_INPUT_92 = "rfMessage16";
-const char* PARAM_INPUT_93 = "rfMessage17";
-const char* PARAM_INPUT_94 = "rfMessage18";
-const char* PARAM_INPUT_95 = "rfMessage19";
-const char* PARAM_INPUT_96 = "rfMessage20";
-const char* PARAM_INPUT_97 = "rfMessage21";
-const char* PARAM_INPUT_98 = "rfMessage22";
-const char* PARAM_INPUT_99 = "rfMessage23";
-const char* PARAM_INPUT_100 = "rfMessage24";
-const char* PARAM_INPUT_101 = "rfMessage25";
-const char* PARAM_INPUT_102 = "rfMessage26";
-const char* PARAM_INPUT_103 = "rfMessage27";
-const char* PARAM_INPUT_104 = "rfMessage28";
-const char* PARAM_INPUT_105 = "rfMessage29";
-const char* PARAM_INPUT_106 = "rfMessage30";
-
-const char* PARAM_INPUT_107 = "rfGroup1";
-const char* PARAM_INPUT_108 = "rfGroup2";
-const char* PARAM_INPUT_109 = "rfGroup3";
-const char* PARAM_INPUT_110 = "rfGroup4";
-const char* PARAM_INPUT_111 = "rfGroup5";
-const char* PARAM_INPUT_112 = "rfGroup6";
-const char* PARAM_INPUT_113 = "rfGroup7";
-const char* PARAM_INPUT_114 = "rfGroup8";
-const char* PARAM_INPUT_115 = "rfGroup9";
-const char* PARAM_INPUT_116 = "rfGroup10";
-const char* PARAM_INPUT_117 = "rfGroup11";
-const char* PARAM_INPUT_118 = "rfGroup12";
-const char* PARAM_INPUT_119 = "rfGroup13";
-const char* PARAM_INPUT_120 = "rfGroup14";
-const char* PARAM_INPUT_121 = "rfGroup15";
-const char* PARAM_INPUT_122 = "rfGroup16";
-const char* PARAM_INPUT_123 = "rfGroup17";
-const char* PARAM_INPUT_124 = "rfGroup18";
-const char* PARAM_INPUT_125 = "rfGroup19";
-const char* PARAM_INPUT_126 = "rfGroup20";
-const char* PARAM_INPUT_127 = "rfGroup21";
-const char* PARAM_INPUT_128 = "rfGroup22";
-const char* PARAM_INPUT_129 = "rfGroup23";
-const char* PARAM_INPUT_130 = "rfGroup24";
-const char* PARAM_INPUT_131 = "rfGroup25";
-const char* PARAM_INPUT_132 = "rfGroup26";
-const char* PARAM_INPUT_133 = "rfGroup27";
-const char* PARAM_INPUT_134 = "rfGroup28";
-const char* PARAM_INPUT_135 = "rfGroup29";
-const char* PARAM_INPUT_136 = "rfGroup30";
-
-
-
 //Variables to save values from HTML form
-
-
 const char* ssid;
 const char* password;
-const char* ap_ip_str = "192.168.4.22"; // AP'nin IP adresi
-const char* ap_ssid = "Güvenlik Sistemi"; // access point adı
+const char* ap_ip_str = "192.168.4.22"; // Acces point modu IP adresi
+const char* ap_ssid = "Güvenlik Sistemi"; // access point modu wifi adı
 const char* apPass; // access point şifresi
 const char* sirenTime;
 const char* callNumber;
@@ -330,16 +187,6 @@ unsigned long sirenzaman = 0;
 
 RCSwitch rfReceiver = RCSwitch();
 
-const int rfReceiverPin = 18; //pin D2, works. Connect RFReceiver module to this pin. Power it from 3V3 (not from 5V because of risk of killing GPIO pin).
-const int rfTransmitterPin = 19;
-
-//Durum ledleri için değişken tanımlıyoruz
-#define sistemAktifLed 12
-#define sistemPasifLed 13
-
-//Siren için değişken tanımlıyoruz
-#define siren 2
-
 // Variable to store text message
 String textMessage;
 
@@ -355,6 +202,7 @@ device_struct devices[NUM_DEVICES]; //make the last entry above without a column
 
 bool enable_system; //start armed
 bool enable_sniffing = false;
+bool forceBoot = 0;
 
 DynamicJsonDocument config(1024);
 DynamicJsonDocument smsconfig(1024);
@@ -518,7 +366,7 @@ void handleNewMessages(int numNewMessages) {
       enable_system = true;
       digitalWrite(sistemAktifLed, HIGH);
       digitalWrite(sistemPasifLed, LOW);
-      bot.sendMessage(chat_id, "Sistem Devrede", "");
+      bot.sendMessage(chat_id, "Sistem Aktif duruma getirildi.", "");
       config["sysState"] = "1";
       writeFile(LittleFS, "/config.json", config);
     }
@@ -527,7 +375,7 @@ void handleNewMessages(int numNewMessages) {
       enable_system = false;
       digitalWrite(sistemAktifLed, LOW);
       digitalWrite(sistemPasifLed, HIGH);
-      bot.sendMessage(chat_id, "Sistem Devre Dışı", "");
+      bot.sendMessage(chat_id, "Sistem Devre Dışı Bırakıldı.", "");
       config["sysState"] = "0";
       writeFile(LittleFS, "/config.json", config);
     }
@@ -551,21 +399,27 @@ void handleNewMessages(int numNewMessages) {
     else if (text == "/dinle") {
       enable_sniffing = !enable_sniffing;
       if (enable_sniffing) {
-        bot.sendMessage(chat_id, "RF algılama açık", "");
+        bot.sendMessage(chat_id, "RF Algılama Açıldı.", "");
       } else {
-        bot.sendMessage(chat_id, "RF algılama kapalı", "");
+        bot.sendMessage(chat_id, "RF Algılama Kapatıldı.", "");
       }
+    }
+    
+    else if (text == "/reboot") {
+      bot.sendMessage(chat_id, "Sistem yeniden başlatılacak.", "");
+      forceBoot = 1;
     }
 
     else if ((text == "/baslat") || (text == "/yardim")) {
       //String welcome = "Welcome, " + from_name + ".\n";
       String welcome = "Komutlar:\n";
-      welcome += "/aktif : Sistemi Devreye Alma\n";
-      welcome += "/pasif : Sistemi Devreden Çıkartma\n";
-      welcome += "/durum : Sistem Durumu\n";
+      welcome += "/aktif : Sistemi Devreye Alır\n";
+      welcome += "/pasif : Sistemi Devre Dışı Bırakır\n";
+      welcome += "/durum : Sistem Durumu Bildirilir\n";
       welcome += "/liste : Bilinen tüm cihazları listeler\n";
       welcome += "/kontrol : Kontrol edilebilir cihazları listeler\n";
       welcome += "/dinle : RF kodları dinleme-algılama modunu değiştirir\n";
+      welcome += "/reboot : Sistemi yeniden başlatır\n";
       welcome += "/baslat veya /yardim : Komutları gösterir\n";
       bot.sendMessage(chat_id, welcome, "Markdown");
     }
@@ -2159,672 +2013,672 @@ Serial.println(rfGroup30);
 
       if(p->isPost()){
         // HTTP POST ssid value
-        if (p->name() == PARAM_INPUT_1) {
+        if (p->name() == "ssid") {
           config["ssid"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST pass value
-        if (p->name() == PARAM_INPUT_2) {
+        if (p->name() == "password") {
           config["password"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST apPass value
-        if (p->name() == PARAM_INPUT_12) {
+        if (p->name() == "apPass") {
           config["apPass"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST uiName value
-        if (p->name() == PARAM_INPUT_13) {
+        if (p->name() == "uiName") {
           config["uiName"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST uiPass value
-        if (p->name() == PARAM_INPUT_14) {
+        if (p->name() == "uiPass") {
           config["uiPass"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST sirenTime value
-        if (p->name() == PARAM_INPUT_5) {
+        if (p->name() == "sirenTime") {
           config["sirenTime"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST smsSysEnable value
-        if (p->name() == PARAM_INPUT_15) {
+        if (p->name() == "smsSysEnable") {
           config["smsSysEnable"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST smsSysDisable value
-        if (p->name() == PARAM_INPUT_16) {
+        if (p->name() == "smsSysDisable") {
           config["smsSysDisable"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST callNumber value
-        if (p->name() == PARAM_INPUT_6) {
+        if (p->name() == "callNumber") {
           config["callNumber"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST smsNumber value
-        if (p->name() == PARAM_INPUT_7) {
+        if (p->name() == "smsNumber") {
           config["smsNumber"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST smsNumber2 value
-        if (p->name() == PARAM_INPUT_3) {
+        if (p->name() == "smsNumber2") {
           config["smsNumber2"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST smsNumber3 value
-        if (p->name() == PARAM_INPUT_4) {
+        if (p->name() == "smsNumber3") {
           config["smsNumber3"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST telegramToken value
-        if (p->name() == PARAM_INPUT_8) {
+        if (p->name() == "telegramToken") {
           config["telegramToken"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         // HTTP POST chat_id value
-        if (p->name() == PARAM_INPUT_9) {
+        if (p->name() == "chat_id") {
           config["chat_id"] = p->value().c_str();
           writeFile(LittleFS, "/config.json", config);
         }
         //SMS CONTROL
-        if (p->name() == PARAM_INPUT_17) {
+        if (p->name() == "ctrlMessage1") {
           smsconfig["ctrlMessage1"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_18) {
+        if (p->name() == "ctrlMessage2") {
           smsconfig["ctrlMessage2"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_19) {
+        if (p->name() == "ctrlMessage3") {
           smsconfig["ctrlMessage3"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_20) {
+        if (p->name() == "ctrlMessage4") {
           smsconfig["ctrlMessage4"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_21) {
+        if (p->name() == "ctrlMessage5") {
           smsconfig["ctrlMessage5"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_22) {
+        if (p->name() == "ctrlMessage6") {
           smsconfig["ctrlMessage6"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_23) {
-          smsconfig["ctrlMessage7"] = p->value().c_str();
+        if (p->name() == "ctrlMessage6") {
+          smsconfig["ctrlMessage6"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_24) {
+        if (p->name() == "ctrlMessage8") {
           smsconfig["ctrlMessage8"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_25) {
+        if (p->name() == "ctrlMessage9") {
           smsconfig["ctrlMessage9"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
         
-        if (p->name() == PARAM_INPUT_26) {
+        if (p->name() == "ctrlMessage0") {
           smsconfig["ctrlMessage0"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
 
-        if (p->name() == PARAM_INPUT_27) {
+        if (p->name() == "sendMessage1") {
           smsconfig["sendMessage1"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
 
-        if (p->name() == PARAM_INPUT_28) {
+        if (p->name() == "sendMessage2") {
           smsconfig["sendMessage2"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
 
-        if (p->name() == PARAM_INPUT_29) {
+        if (p->name() == "sendMessage3") {
           smsconfig["sendMessage3"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
 
-        if (p->name() == PARAM_INPUT_30) {
+        if (p->name() == "sendMessage4") {
           smsconfig["sendMessage4"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
 
-        if (p->name() == PARAM_INPUT_31) {
+        if (p->name() == "sendMessage5") {
           smsconfig["sendMessage5"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig.json", smsconfig);
         }
 
-        if (p->name() == PARAM_INPUT_32) {
+        if (p->name() == "sendMessage6") {
           smsconfig2["sendMessage6"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
 
-        if (p->name() == PARAM_INPUT_33) {
+        if (p->name() == "sendMessage7") {
           smsconfig2["sendMessage7"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
 
-        if (p->name() == PARAM_INPUT_34) {
+        if (p->name() == "sendMessage8") {
           smsconfig2["sendMessage8"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
 
-        if (p->name() == PARAM_INPUT_35) {
+        if (p->name() == "sendMessage9") {
           smsconfig2["sendMessage9"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
 
-        if (p->name() == PARAM_INPUT_36) {
+        if (p->name() == "sendMessage0") {
           smsconfig2["sendMessage0"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_37) {
+        if (p->name() == "sendRf1") {
           smsconfig2["sendRf1"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_38) {
+        if (p->name() == "sendRf2") {
           smsconfig2["sendRf2"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_39) {
+        if (p->name() == "sendRf3") {
           smsconfig2["sendRf3"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_40) {
+        if (p->name() == "sendRf4") {
           smsconfig2["sendRf4"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_41) {
+        if (p->name() == "sendRf5") {
           smsconfig2["sendRf5"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_42) {
+        if (p->name() == "sendRf6") {
           smsconfig2["sendRf6"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_43) {
+        if (p->name() == "sendRf7") {
           smsconfig2["sendRf7"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_44) {
+        if (p->name() == "sendRf8") {
           smsconfig2["sendRf8"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_45) {
+        if (p->name() == "sendRf9") {
           smsconfig2["sendRf9"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
         
-        if (p->name() == PARAM_INPUT_46) {
+        if (p->name() == "sendRf0") {
           smsconfig2["sendRf0"] = p->value().c_str();
           writeFile(LittleFS, "/smsconfig2.json", smsconfig2);
         }
 
         //devices
-        if (p->name() == PARAM_INPUT_47) {
+        if (p->name() == "rfCode1") {
           devices1["rfCode1"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_48) {
+        if (p->name() == "rfCode2") {
           devices1["rfCode2"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_49) {
+        if (p->name() == "rfCode3") {
           devices1["rfCode3"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_50) {
+        if (p->name() == "rfCode4") {
           devices1["rfCode4"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_51) {
+        if (p->name() == "rfCode5") {
           devices1["rfCode5"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_52) {
+        if (p->name() == "rfCode6") {
           devices1["rfCode6"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_53) {
+        if (p->name() == "rfCode7") {
           devices1["rfCode7"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_54) {
+        if (p->name() == "rfCode8") {
           devices1["rfCode8"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_55) {
+        if (p->name() == "rfCode9") {
           devices1["rfCode9"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_56) {
+        if (p->name() == "rfCode10") {
           devices1["rfCode10"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_57) {
+        if (p->name() == "rfCode11") {
           devices1["rfCode11"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_58) {
+        if (p->name() == "rfCode12") {
           devices1["rfCode12"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_59) {
+        if (p->name() == "rfCode13") {
           devices1["rfCode13"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_60) {
+        if (p->name() == "rfCode14") {
           devices1["rfCode14"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_61) {
+        if (p->name() == "rfCode15") {
           devices1["rfCode15"] = p->value().c_str();
           writeFile(LittleFS, "/devices1.json", devices1);
         }
 
-        if (p->name() == PARAM_INPUT_62) {
+        if (p->name() == "rfCode16") {
           devices2["rfCode16"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_63) {
+        if (p->name() == "rfCode17") {
           devices2["rfCode17"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_64) {
+        if (p->name() == "rfCode18") {
           devices2["rfCode18"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_65) {
+        if (p->name() == "rfCode19") {
           devices2["rfCode19"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_66) {
+        if (p->name() == "rfCode20") {
           devices2["rfCode20"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_67) {
+        if (p->name() == "rfCode21") {
           devices2["rfCode21"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_68) {
+        if (p->name() == "rfCode22") {
           devices2["rfCode22"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_69) {
+        if (p->name() == "rfCode23") {
           devices2["rfCode23"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_70) {
+        if (p->name() == "rfCode24") {
           devices2["rfCode24"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_71) {
+        if (p->name() == "rfCode25") {
           devices2["rfCode25"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_72) {
+        if (p->name() == "rfCode26") {
           devices2["rfCode26"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_73) {
+        if (p->name() == "rfCode27") {
           devices2["rfCode27"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_74) {
+        if (p->name() == "rfCode28") {
           devices2["rfCode28"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_75) {
+        if (p->name() == "rfCode29") {
           devices2["rfCode29"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_76) {
+        if (p->name() == "rfCode30") {
           devices2["rfCode30"] = p->value().c_str();
           writeFile(LittleFS, "/devices2.json", devices2);
         }
 
-        if (p->name() == PARAM_INPUT_77) {
+        if (p->name() == "rfMessage1") {
           devices3["rfMessage1"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_78) {
+        if (p->name() == "rfMessage2") {
           devices3["rfMessage2"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_79) {
+        if (p->name() == "rfMessage3") {
           devices3["rfMessage3"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_80) {
+        if (p->name() == "rfMessage4") {
           devices3["rfMessage4"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_81) {
+        if (p->name() == "rfMessage5") {
           devices3["rfMessage5"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_82) {
+        if (p->name() == "rfMessage6") {
           devices3["rfMessage6"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_83) {
+        if (p->name() == "rfMessage7") {
           devices3["rfMessage7"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_84) {
+        if (p->name() == "rfMessage8") {
           devices3["rfMessage8"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_85) {
+        if (p->name() == "rfMessage9") {
           devices3["rfMessage9"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_86) {
+        if (p->name() == "rfMessage10") {
           devices3["rfMessage10"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_87) {
+        if (p->name() == "rfMessage11") {
           devices3["rfMessage11"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_88) {
+        if (p->name() == "rfMessage12") {
           devices3["rfMessage12"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_89) {
+        if (p->name() == "rfMessage13") {
           devices3["rfMessage13"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_90) {
+        if (p->name() == "rfMessage14") {
           devices3["rfMessage14"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_91) {
+        if (p->name() == "rfMessage15") {
           devices3["rfMessage15"] = p->value().c_str();
           writeFile(LittleFS, "/devices3.json", devices3);
         }
 
-        if (p->name() == PARAM_INPUT_92) {
+        if (p->name() == "rfMessage16") {
           devices4["rfMessage16"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_93) {
+        if (p->name() == "rfMessage17") {
           devices4["rfMessage17"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_94) {
+        if (p->name() == "rfMessage18") {
           devices4["rfMessage18"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_95) {
+        if (p->name() == "rfMessage19") {
           devices4["rfMessage19"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_96) {
+        if (p->name() == "rfMessage20") {
           devices4["rfMessage20"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_97) {
+        if (p->name() == "rfMessage21") {
           devices4["rfMessage21"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_98) {
+        if (p->name() == "rfMessage22") {
           devices4["rfMessage22"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_99) {
+        if (p->name() == "rfMessage23") {
           devices4["rfMessage23"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_100) {
+        if (p->name() == "rfMessage24") {
           devices4["rfMessage24"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_101) {
+        if (p->name() == "rfMessage25") {
           devices4["rfMessage25"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_102) {
+        if (p->name() == "rfMessage26") {
           devices4["rfMessage26"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_103) {
+        if (p->name() == "rfMessage27") {
           devices4["rfMessage27"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_104) {
+        if (p->name() == "rfMessage28") {
           devices4["rfMessage28"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_105) {
+        if (p->name() == "rfMessage29") {
           devices4["rfMessage29"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_106) {
+        if (p->name() == "rfMessage30") {
           devices4["rfMessage30"] = p->value().c_str();
           writeFile(LittleFS, "/devices4.json", devices4);
         }
 
-        if (p->name() == PARAM_INPUT_107) {
+        if (p->name() == "rfGroup1") {
           devices5["rfGroup1"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_108) {
+        if (p->name() == "rfGroup2") {
           devices5["rfGroup2"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_109) {
+        if (p->name() == "rfGroup3") {
           devices5["rfGroup3"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_110) {
+        if (p->name() == "rfGroup4") {
           devices5["rfGroup4"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_111) {
+        if (p->name() == "rfGroup5") {
           devices5["rfGroup5"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_112) {
+        if (p->name() == "rfGroup6") {
           devices5["rfGroup6"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_113) {
+        if (p->name() == "rfGroup7") {
           devices5["rfGroup7"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_114) {
+        if (p->name() == "rfGroup8") {
           devices5["rfGroup8"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_115) {
+        if (p->name() == "rfGroup9") {
           devices5["rfGroup9"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_116) {
+        if (p->name() == "rfGroup10") {
           devices5["rfGroup10"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_117) {
+        if (p->name() == "rfGroup11") {
           devices5["rfGroup11"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_118) {
+        if (p->name() == "rfGroup12") {
           devices5["rfGroup12"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_119) {
+        if (p->name() == "rfGroup13") {
           devices5["rfGroup13"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_120) {
+        if (p->name() == "rfGroup14") {
           devices5["rfGroup14"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_121) {
+        if (p->name() == "rfGroup15") {
           devices5["rfGroup15"] = p->value().c_str();
           writeFile(LittleFS, "/devices5.json", devices5);
         }
 
-        if (p->name() == PARAM_INPUT_122) {
+        if (p->name() == "rfGroup16") {
           devices6["rfGroup16"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_123) {
+        if (p->name() == "rfGroup17") {
           devices6["rfGroup17"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_124) {
+        if (p->name() == "rfGroup18") {
           devices6["rfGroup18"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
-        if (p->name() == PARAM_INPUT_125) {
+        if (p->name() == "rfGroup19") {
           devices6["rfGroup19"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_126) {
+        if (p->name() == "rfGroup20") {
           devices6["rfGroup20"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_127) {
+        if (p->name() == "rfGroup21") {
           devices6["rfGroup21"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_128) {
+        if (p->name() == "rfGroup22") {
           devices6["rfGroup22"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_129) {
+        if (p->name() == "rfGroup23") {
           devices6["rfGroup23"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_130) {
+        if (p->name() == "rfGroup24") {
           devices6["rfGroup24"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_131) {
+        if (p->name() == "rfGroup25") {
           devices6["rfGroup25"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_132) {
+        if (p->name() == "rfGroup26") {
           devices6["rfGroup26"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_133) {
+        if (p->name() == "rfGroup27") {
           devices6["rfGroup27"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_134) {
+        if (p->name() == "rfGroup28") {
           devices6["rfGroup28"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_135) {
+        if (p->name() == "rfGroup29") {
           devices6["rfGroup29"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
 
-        if (p->name() == PARAM_INPUT_136) {
+        if (p->name() == "rfGroup30") {
           devices6["rfGroup30"] = p->value().c_str();
           writeFile(LittleFS, "/devices6.json", devices6);
         }
@@ -2839,12 +2693,22 @@ Serial.println(rfGroup30);
     String paramOutput;
 
     // GET input1 value on <ESP_IP>/update?output=<paramOutput>&state=<paramState>
-    if (request->hasParam(PARAM_INPUT_10) && request->hasParam(PARAM_INPUT_11)) {
-      paramOutput = request->getParam(PARAM_INPUT_10)->value();
-      paramState = request->getParam(PARAM_INPUT_11)->value();
+    if (request->hasParam("output") && request->hasParam("state")) {
+      paramOutput = request->getParam("output")->value();
+      paramState = request->getParam("state")->value();
       //digitalWrite(paramOutput.toInt(), paramState.toInt());
 
       if(paramOutput == "sysSwitch"){
+        if(paramState == "1"){
+          enable_system = true;
+          digitalWrite(sistemAktifLed, HIGH);
+          digitalWrite(sistemPasifLed, LOW);
+        }
+        if(paramState == "0"){
+          enable_system = false;
+          digitalWrite(sistemAktifLed, LOW);
+          digitalWrite(sistemPasifLed, HIGH);
+        }
         config["sysState"] = paramState;
         writeFile(LittleFS, "/config.json", config);
       }
@@ -2957,6 +2821,10 @@ void loop() {
   // I do not have a solution for this problem. A radical solution is not to check messages at all, as in "SimleAlarmSystem" project.
   if (millis() > lastTimeBotRan + botRequestDelay)  {
     int numNewMessages = bot.getUpdates(bot.last_message_received + 1);
+    if (forceBoot == 1){
+      forceBoot = 0;
+      ESP.restart();
+    }
 
     //while(numNewMessages) { //AMA commented this out, check only one message per loop cycle
     //Serial.println("got response");
