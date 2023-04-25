@@ -29,6 +29,7 @@ const char* password;
 const char* ap_ip_str = "192.168.4.22"; // Acces point modu IP adresi
 const char* ap_ssid = "Güvenlik Sistemi"; // access point modu wifi adı
 const char* apPass; // access point şifresi
+const char* sirenSwitch;
 const char* sirenTime;
 const char* callNumber;
 const char* smsNumber;
@@ -307,9 +308,11 @@ void parseRemote(int remoteID) {
       }
 
       if ((devices[currentDevice].group == 3) && enable_system) {
-        sirenzaman = millis();
-        digitalWrite(siren, HIGH);
-        Serial.println("Sensör tetiklendiği için siren çalmaya başladı");
+        if(strcmp(sirenSwitch,"0")){
+          sirenzaman = millis();
+          digitalWrite(siren, HIGH);
+          Serial.println("Sensör tetiklendiği için siren çalmaya başladı");
+        }
         if(strcmp(telegramState,"0")){
           bot.sendMessage(chat_id, devices[currentDevice].remoteName, "");
         }
@@ -792,369 +795,379 @@ String processor(const String& var) {
     return sendRf0;
   }
 
-//devices
-if(var == "RFSTATE1") {
-  return rfCode1;
-}
-
-if(var == "RFSTATE2") {
-  return rfCode2;
-}
-
-if(var == "RFSTATE3") {
-  return rfCode3;
-}
-
-if(var == "RFSTATE4") {
-  return rfCode4;
-}
-
-if(var == "RFSTATE5") {
-  return rfCode5;
-}
-
-if(var == "RFSTATE6") {
-  return rfCode6;
-}
+  //devices
+  if(var == "RFSTATE1") {
+    return rfCode1;
+  }
+
+  if(var == "RFSTATE2") {
+    return rfCode2;
+  }
+
+  if(var == "RFSTATE3") {
+    return rfCode3;
+  }
+
+  if(var == "RFSTATE4") {
+    return rfCode4;
+  }
+
+  if(var == "RFSTATE5") {
+    return rfCode5;
+  }
+
+  if(var == "RFSTATE6") {
+    return rfCode6;
+  }
 
-if(var == "RFSTATE7") {
-  return rfCode7;
-}
+  if(var == "RFSTATE7") {
+    return rfCode7;
+  }
 
-if(var == "RFSTATE8") {
-  return rfCode8;
-}
+  if(var == "RFSTATE8") {
+    return rfCode8;
+  }
 
-if(var == "RFSTATE9") {
-  return rfCode9;
-}
+  if(var == "RFSTATE9") {
+    return rfCode9;
+  }
 
-if(var == "RFSTATE10") {
-  return rfCode10;
-}
+  if(var == "RFSTATE10") {
+    return rfCode10;
+  }
 
-if(var == "RFSTATE11") {
-  return rfCode11;
-}
+  if(var == "RFSTATE11") {
+    return rfCode11;
+  }
 
-if(var == "RFSTATE12") {
-  return rfCode12;
-}
+  if(var == "RFSTATE12") {
+    return rfCode12;
+  }
 
-if(var == "RFSTATE13") {
-  return rfCode13;
-}
+  if(var == "RFSTATE13") {
+    return rfCode13;
+  }
 
-if(var == "RFSTATE14") {
-  return rfCode14;
-}
+  if(var == "RFSTATE14") {
+    return rfCode14;
+  }
 
-if(var == "RFSTATE15") {
-  return rfCode15;
-}
+  if(var == "RFSTATE15") {
+    return rfCode15;
+  }
 
-if(var == "RFSTATE16") {
-  return rfCode16;
-}
+  if(var == "RFSTATE16") {
+    return rfCode16;
+  }
 
-if(var == "RFSTATE17") {
-  return rfCode17;
-}
+  if(var == "RFSTATE17") {
+    return rfCode17;
+  }
 
-if(var == "RFSTATE18") {
-  return rfCode18;
-}
+  if(var == "RFSTATE18") {
+    return rfCode18;
+  }
 
-if(var == "RFSTATE19") {
-  return rfCode19;
-}
+  if(var == "RFSTATE19") {
+    return rfCode19;
+  }
 
-if(var == "RFSTATE20") {
-  return rfCode20;
-}
+  if(var == "RFSTATE20") {
+    return rfCode20;
+  }
 
-if(var == "RFSTATE21") {
-  return rfCode21;
-}
+  if(var == "RFSTATE21") {
+    return rfCode21;
+  }
 
-if(var == "RFSTATE22") {
-  return rfCode22;
-}
+  if(var == "RFSTATE22") {
+    return rfCode22;
+  }
 
-if(var == "RFSTATE23") {
-  return rfCode23;
-}
+  if(var == "RFSTATE23") {
+    return rfCode23;
+  }
 
-if(var == "RFSTATE24") {
-  return rfCode24;
-}
+  if(var == "RFSTATE24") {
+    return rfCode24;
+  }
 
-if(var == "RFSTATE25") {
-  return rfCode25;
-}
+  if(var == "RFSTATE25") {
+    return rfCode25;
+  }
 
-if(var == "RFSTATE26") {
-  return rfCode26;
-}
+  if(var == "RFSTATE26") {
+    return rfCode26;
+  }
 
-if(var == "RFSTATE27") {
-  return rfCode27;
-}
+  if(var == "RFSTATE27") {
+    return rfCode27;
+  }
 
-if(var == "RFSTATE28") {
-  return rfCode28;
-}
+  if(var == "RFSTATE28") {
+    return rfCode28;
+  }
 
-if(var == "RFSTATE29") {
-  return rfCode29;
-}
+  if(var == "RFSTATE29") {
+    return rfCode29;
+  }
 
-if(var == "RFSTATE30") {
-  return rfCode30;
-}
+  if(var == "RFSTATE30") {
+    return rfCode30;
+  }
 
 
-if(var == "MESSAGESTATE1") {
-  return rfMessage1;
-}
+  if(var == "MESSAGESTATE1") {
+    return rfMessage1;
+  }
 
-if(var == "MESSAGESTATE2") {
-  return rfMessage2;
-}
+  if(var == "MESSAGESTATE2") {
+    return rfMessage2;
+  }
 
-if(var == "MESSAGESTATE3") {
-  return rfMessage3;
-}
+  if(var == "MESSAGESTATE3") {
+    return rfMessage3;
+  }
 
-if(var == "MESSAGESTATE4") {
-  return rfMessage4;
-}
+  if(var == "MESSAGESTATE4") {
+    return rfMessage4;
+  }
 
-if(var == "MESSAGESTATE5") {
-  return rfMessage5;
-}
+  if(var == "MESSAGESTATE5") {
+    return rfMessage5;
+  }
 
-if(var == "MESSAGESTATE6") {
-  return rfMessage6;
-}
+  if(var == "MESSAGESTATE6") {
+    return rfMessage6;
+  }
 
-if(var == "MESSAGESTATE7") {
-  return rfMessage7;
-}
+  if(var == "MESSAGESTATE7") {
+    return rfMessage7;
+  }
 
-if(var == "MESSAGESTATE8") {
-  return rfMessage8;
-}
+  if(var == "MESSAGESTATE8") {
+    return rfMessage8;
+  }
 
-if(var == "MESSAGESTATE9") {
-  return rfMessage9;
-}
+  if(var == "MESSAGESTATE9") {
+    return rfMessage9;
+  }
 
-if(var == "MESSAGESTATE10") {
-  return rfMessage10;
-}
+  if(var == "MESSAGESTATE10") {
+    return rfMessage10;
+  }
 
-if(var == "MESSAGESTATE11") {
-  return rfMessage11;
-}
+  if(var == "MESSAGESTATE11") {
+    return rfMessage11;
+  }
 
-if(var == "MESSAGESTATE12") {
-  return rfMessage12;
-}
+  if(var == "MESSAGESTATE12") {
+    return rfMessage12;
+  }
 
-if(var == "MESSAGESTATE13") {
-  return rfMessage13;
-}
+  if(var == "MESSAGESTATE13") {
+    return rfMessage13;
+  }
 
-if(var == "MESSAGESTATE14") {
-  return rfMessage14;
-}
+  if(var == "MESSAGESTATE14") {
+    return rfMessage14;
+  }
 
-if(var == "MESSAGESTATE15") {
-  return rfMessage15;
-}
+  if(var == "MESSAGESTATE15") {
+    return rfMessage15;
+  }
 
-if(var == "MESSAGESTATE16") {
-  return rfMessage16;
-}
+  if(var == "MESSAGESTATE16") {
+    return rfMessage16;
+  }
 
-if(var == "MESSAGESTATE17") {
-  return rfMessage17;
-}
+  if(var == "MESSAGESTATE17") {
+    return rfMessage17;
+  }
 
-if(var == "MESSAGESTATE18") {
-  return rfMessage18;
-}
+  if(var == "MESSAGESTATE18") {
+    return rfMessage18;
+  }
 
-if(var == "MESSAGESTATE19") {
-  return rfMessage19;
-}
+  if(var == "MESSAGESTATE19") {
+    return rfMessage19;
+  }
 
-if(var == "MESSAGESTATE20") {
-  return rfMessage20;
-}
+  if(var == "MESSAGESTATE20") {
+    return rfMessage20;
+  }
 
-if(var == "MESSAGESTATE21") {
-  return rfMessage21;
-}
+  if(var == "MESSAGESTATE21") {
+    return rfMessage21;
+  }
 
-if(var == "MESSAGESTATE22") {
-  return rfMessage22;
-}
+  if(var == "MESSAGESTATE22") {
+    return rfMessage22;
+  }
 
-if(var == "MESSAGESTATE23") {
-  return rfMessage23;
-}
+  if(var == "MESSAGESTATE23") {
+    return rfMessage23;
+  }
 
-if(var == "MESSAGESTATE24") {
-  return rfMessage24;
-}
+  if(var == "MESSAGESTATE24") {
+    return rfMessage24;
+  }
 
-if(var == "MESSAGESTATE25") {
-  return rfMessage25;
-}
+  if(var == "MESSAGESTATE25") {
+    return rfMessage25;
+  }
 
-if(var == "MESSAGESTATE26") {
-  return rfMessage26;
-}
+  if(var == "MESSAGESTATE26") {
+    return rfMessage26;
+  }
 
-if(var == "MESSAGESTATE27") {
-  return rfMessage27;
-}
+  if(var == "MESSAGESTATE27") {
+    return rfMessage27;
+  }
 
-if(var == "MESSAGESTATE28") {
-  return rfMessage28;
-}
+  if(var == "MESSAGESTATE28") {
+    return rfMessage28;
+  }
 
-if(var == "MESSAGESTATE29") {
-  return rfMessage29;
-}
+  if(var == "MESSAGESTATE29") {
+    return rfMessage29;
+  }
 
-if(var == "MESSAGESTATE30") {
-  return rfMessage30;
-}
+  if(var == "MESSAGESTATE30") {
+    return rfMessage30;
+  }
 
 
-if(var == "RFGROUP1") {
-  return rfGroup1;
-}
+  if(var == "RFGROUP1") {
+    return rfGroup1;
+  }
 
-if(var == "RFGROUP2") {
-  return rfGroup2;
-}
+  if(var == "RFGROUP2") {
+    return rfGroup2;
+  }
 
-if(var == "RFGROUP3") {
-  return rfGroup3;
-}
+  if(var == "RFGROUP3") {
+    return rfGroup3;
+  }
 
-if(var == "RFGROUP4") {
-  return rfGroup4;
-}
+  if(var == "RFGROUP4") {
+    return rfGroup4;
+  }
 
-if(var == "RFGROUP5") {
-  return rfGroup5;
-}
+  if(var == "RFGROUP5") {
+    return rfGroup5;
+  }
 
-if(var == "RFGROUP6") {
-  return rfGroup6;
-}
+  if(var == "RFGROUP6") {
+    return rfGroup6;
+  }
 
-if(var == "RFGROUP7") {
-  return rfGroup7;
-}
+  if(var == "RFGROUP7") {
+    return rfGroup7;
+  }
 
-if(var == "RFGROUP8") {
-  return rfGroup8;
-}
+  if(var == "RFGROUP8") {
+    return rfGroup8;
+  }
 
-if(var == "RFGROUP9") {
-  return rfGroup9;
-}
+  if(var == "RFGROUP9") {
+    return rfGroup9;
+  }
 
-if(var == "RFGROUP10") {
-  return rfGroup10;
-}
+  if(var == "RFGROUP10") {
+    return rfGroup10;
+  }
 
-if(var == "RFGROUP11") {
-  return rfGroup11;
-}
+  if(var == "RFGROUP11") {
+    return rfGroup11;
+  }
 
-if(var == "RFGROUP12") {
-  return rfGroup12;
-}
+  if(var == "RFGROUP12") {
+    return rfGroup12;
+  }
 
-if(var == "RFGROUP13") {
-  return rfGroup13;
-}
+  if(var == "RFGROUP13") {
+    return rfGroup13;
+  }
 
-if(var == "RFGROUP14") {
-  return rfGroup14;
-}
+  if(var == "RFGROUP14") {
+    return rfGroup14;
+  }
 
-if(var == "RFGROUP15") {
-  return rfGroup15;
-}
+  if(var == "RFGROUP15") {
+    return rfGroup15;
+  }
 
-if(var == "RFGROUP16") {
-  return rfGroup16;
-}
+  if(var == "RFGROUP16") {
+    return rfGroup16;
+  }
 
-if(var == "RFGROUP17") {
-  return rfGroup17;
-}
+  if(var == "RFGROUP17") {
+    return rfGroup17;
+  }
 
-if(var == "RFGROUP18") {
-  return rfGroup18;
-}
+  if(var == "RFGROUP18") {
+    return rfGroup18;
+  }
 
-if(var == "RFGROUP19") {
-  return rfGroup19;
-}
+  if(var == "RFGROUP19") {
+    return rfGroup19;
+  }
 
-if(var == "RFGROUP20") {
-  return rfGroup20;
-}
+  if(var == "RFGROUP20") {
+    return rfGroup20;
+  }
 
-if(var == "RFGROUP21") {
-  return rfGroup21;
-}
+  if(var == "RFGROUP21") {
+    return rfGroup21;
+  }
 
-if(var == "RFGROUP22") {
-  return rfGroup22;
-}
+  if(var == "RFGROUP22") {
+    return rfGroup22;
+  }
 
-if(var == "RFGROUP23") {
-  return rfGroup23;
-}
+  if(var == "RFGROUP23") {
+    return rfGroup23;
+  }
 
-if(var == "RFGROUP24") {
-  return rfGroup24;
-}
+  if(var == "RFGROUP24") {
+    return rfGroup24;
+  }
 
-if(var == "RFGROUP25") {
-  return rfGroup25;
-}
+  if(var == "RFGROUP25") {
+    return rfGroup25;
+  }
 
-if(var == "RFGROUP26") {
-  return rfGroup26;
-}
+  if(var == "RFGROUP26") {
+    return rfGroup26;
+  }
 
-if(var == "RFGROUP27") {
-  return rfGroup27;
-}
+  if(var == "RFGROUP27") {
+    return rfGroup27;
+  }
 
-if(var == "RFGROUP28") {
-  return rfGroup28;
-}
+  if(var == "RFGROUP28") {
+    return rfGroup28;
+  }
 
-if(var == "RFGROUP29") {
-  return rfGroup29;
-}
+  if(var == "RFGROUP29") {
+    return rfGroup29;
+  }
 
-if(var == "RFGROUP30") {
-  return rfGroup30;
-}
+  if(var == "RFGROUP30") {
+    return rfGroup30;
+  }
 
+
+  if(var == "SIRENSWITCHSTATE") {
+    String sirenSwitch1;
+    if(strcmp(sirenSwitch,"0")){
+      sirenSwitch1 ="checked";
+    }else{
+      sirenSwitch1 ="";
+    }
+    return sirenSwitch1;
+  }
 
   if(var == "SYSSTATE") {
     String sysState1;
@@ -1473,6 +1486,7 @@ void setup() {
   readJSON(LittleFS, "/devices6.json", devices6);
   ssid = config["ssid"];
   password = config["password"];
+  sirenSwitch = config["sirenSwitch"];
   sirenTime = config["sirenTime"];
   callNumber = config["callNumber"];
   smsNumber = config["smsNumber"];
@@ -1660,6 +1674,8 @@ void setup() {
   Serial.println(ssid);
   Serial.print("password: ");
   Serial.println(password);
+  Serial.print("sirenSwitch: ");
+  Serial.println(sirenSwitch);
   Serial.print("sirenTime: ");
   Serial.println(sirenTime);
   Serial.print("callNumber: ");
@@ -2713,6 +2729,11 @@ Serial.println(rfGroup30);
         writeFile(LittleFS, "/config.json", config);
       }
 
+      if(paramOutput == "sirenSwitch"){
+        config["sirenSwitch"] = paramState;
+        writeFile(LittleFS, "/config.json", config);
+      }
+
       if(paramOutput == "smsSysCtrlSwitch"){
         config["smsSysCtrl"] = paramState;
         writeFile(LittleFS, "/config.json", config);
@@ -2806,8 +2827,9 @@ void loop() {
     SMScontrol();
   }
 
-  if (millis() - sirenzaman > sirenSure) {
+  if((digitalRead(siren) == 1) && (millis() - sirenzaman > sirenSure)) {
     digitalWrite(siren, LOW);
+    Serial.println("Süre dolduğu için siren susturuldu");
   }
 
   // listen to rfReceiver
