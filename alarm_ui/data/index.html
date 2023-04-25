@@ -156,13 +156,23 @@
 							</li>
 							<hr>
 							<form action="/" method="POST">
-								<ul class="list-group list-group-sm">
-										<li class="list-group-item has-icon">
-											<label class="d-block mb-0">Siren Çalma Süresi</label>
-											<div class="small text-muted mb-3">Sensörler tetiklendiğinde sirenin çalacağı süreyi saniye olarak giriniz.</div>
-											<input type="number" class="form-control" name="sirenTime" id="sirenTime" placeholder="Siren Çalma süresi" value="%SIRENSTATE%">
-										</li>
-								</ul>
+								<li class="list-group-item has-icon">
+									Siren
+									<div class="small text-muted mb-3">Bu ayar aktif edildiğinde sistem aktif durumda iken ilgili sensörler tetiklendiğinde siren çalar.</div>
+									<div class="custom-control custom-control-nolabel custom-switch ml-auto">
+										<input type="checkbox" class="custom-control-input" onchange="toggleCheckbox(this)" id="sirenSwitch" %SIRENSWITCHSTATE%>
+										<label class="custom-control-label" for="sirenSwitch"></label>
+									</div>
+									<div id="dvSirenSwitch">
+										<ul class="list-group list-group-sm">
+												<li class="list-group-item has-icon">
+													<label class="d-block mb-0">Siren Çalma Süresi</label>
+													<div class="small text-muted mb-3">Sensörler tetiklendiğinde sirenin çalacağı süreyi saniye olarak giriniz.</div>
+													<input type="number" class="form-control" name="sirenTime" id="sirenTime" placeholder="Siren Çalma süresi" value="%SIRENSTATE%">
+												</li>
+										</ul>
+									</div>
+								</li>
 								<br>
 								<button type="submit" class="btn btn-primary" value="Submit" onclick="saveButton(this)">Kaydet</button>
 								<button type="reset" class="btn btn-light">İptal</button>
@@ -1148,6 +1158,23 @@
 			else { xhr.open("GET", "/update?output="+element.id+"&state=0", true); }
 			xhr.send();
 		}
+
+		if( $('#sirenSwitch').is(':checked') ){
+			$("#dvSirenSwitch").show();
+		}
+		else{
+			$("#dvSirenSwitch").hide();
+		}
+
+		$(function () {
+			$("#sirenSwitch").click(function () {
+				if ($(this).is(":checked")) {
+					$("#dvSirenSwitch").show();
+				} else {
+					$("#dvSirenSwitch").hide();
+			}
+			});
+		});
 
 		if( $('#smsSysCtrlSwitch').is(':checked') ){
 			$("#dvSmsSysCtrlSwitch").show();
