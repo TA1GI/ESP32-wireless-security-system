@@ -3,6 +3,7 @@
 #include <WiFiClientSecure.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncTCP.h>
+#include <AsyncElegantOTA.h>
 #include "FS.h"
 #include <LittleFS.h>
 #include <ArduinoJson.h>
@@ -2704,11 +2705,11 @@ Serial.println(rfGroup30);
     }
   });
 
-  server.on("/update", HTTP_GET, [] (AsyncWebServerRequest *request) {
+  server.on("/switch", HTTP_GET, [] (AsyncWebServerRequest *request) {
     String paramState;
     String paramOutput;
 
-    // GET input1 value on <ESP_IP>/update?output=<paramOutput>&state=<paramState>
+    // GET input1 value on <ESP_IP>/switch?output=<paramOutput>&state=<paramState>
     if (request->hasParam("output") && request->hasParam("state")) {
       paramOutput = request->getParam("output")->value();
       paramState = request->getParam("state")->value();
@@ -2791,6 +2792,7 @@ Serial.println(rfGroup30);
     request->send_P(200, "text/plain", remoteIdGet.c_str());
   });
 
+  AsyncElegantOTA.begin(&server, uiName, uiPass);
   server.begin();
   // AT command to set SIM900 to SMS mode
   Serial2.print("AT+CMGF=1\r");
