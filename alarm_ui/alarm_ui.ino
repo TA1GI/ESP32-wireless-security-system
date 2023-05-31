@@ -329,6 +329,7 @@ void parseRemote(int remoteID) {
           Serial2.print(callNumber);
           Serial2.println(";");
           //Serial2.println("ATH");
+          delay(100);
           // Set module to send SMS data to serial out upon receipt
           Serial2.print("AT+CNMI=2,2,0,0,0\r");
         }
