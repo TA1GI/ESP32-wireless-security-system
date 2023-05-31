@@ -207,6 +207,7 @@ bool enable_sniffing = false;
 bool forceBoot = 0;
 
 DynamicJsonDocument config(1024);
+DynamicJsonDocument config2(1024);
 DynamicJsonDocument smsconfig(1024);
 DynamicJsonDocument smsconfig2(1024);
 DynamicJsonDocument devices1(1024);
@@ -1477,6 +1478,7 @@ void setup() {
   initFS();
 
   readJSON(LittleFS, "/config.json", config);
+  readJSON(LittleFS, "/config2.json", config2);
   readJSON(LittleFS, "/smsconfig.json", smsconfig);
   readJSON(LittleFS, "/smsconfig2.json", smsconfig2);
   readJSON(LittleFS, "/devices1.json", devices1);
@@ -1485,16 +1487,16 @@ void setup() {
   readJSON(LittleFS, "/devices4.json", devices4);
   readJSON(LittleFS, "/devices5.json", devices5);
   readJSON(LittleFS, "/devices6.json", devices6);
-  ssid = config["ssid"];
-  password = config["password"];
+  ssid = config2["ssid"];
+  password = config2["password"];
   sirenSwitch = config["sirenSwitch"];
   sirenTime = config["sirenTime"];
   callNumber = config["callNumber"];
   smsNumber = config["smsNumber"];
   smsNumber2 = config["smsNumber2"];
   smsNumber3 = config["smsNumber3"];
-  telegramToken = config["telegramToken"];
-  chat_id = config["chat_id"];
+  telegramToken = config2["telegramToken"];
+  chat_id = config2["chat_id"];
   sysState = config["sysState"];
   smsSysCtrl = config["smsSysCtrl"];
   smsSysEnable = config["smsSysEnable"];
@@ -1505,10 +1507,10 @@ void setup() {
   smsState = config["smsState"];
   smsState2 = config["smsState2"];
   smsState3 = config["smsState3"];
-  telegramState = config["telegramState"];
-  apPass = config["apPass"];
-  uiName = config["uiName"];
-  uiPass = config["uiPass"];
+  telegramState = config2["telegramState"];
+  apPass = config2["apPass"];
+  uiName = config2["uiName"];
+  uiPass = config2["uiPass"];
 
   //sms control
   ctrlMessage1 = smsconfig["ctrlMessage1"];
@@ -2031,28 +2033,28 @@ Serial.println(rfGroup30);
       if(p->isPost()){
         // HTTP POST ssid value
         if (p->name() == "ssid") {
-          config["ssid"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["ssid"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         // HTTP POST pass value
         if (p->name() == "password") {
-          config["password"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["password"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         // HTTP POST apPass value
         if (p->name() == "apPass") {
-          config["apPass"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["apPass"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         // HTTP POST uiName value
         if (p->name() == "uiName") {
-          config["uiName"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["uiName"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         // HTTP POST uiPass value
         if (p->name() == "uiPass") {
-          config["uiPass"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["uiPass"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         // HTTP POST sirenTime value
         if (p->name() == "sirenTime") {
@@ -2091,13 +2093,13 @@ Serial.println(rfGroup30);
         }
         // HTTP POST telegramToken value
         if (p->name() == "telegramToken") {
-          config["telegramToken"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["telegramToken"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         // HTTP POST chat_id value
         if (p->name() == "chat_id") {
-          config["chat_id"] = p->value().c_str();
-          writeFile(LittleFS, "/config.json", config);
+          config2["chat_id"] = p->value().c_str();
+          writeFile(LittleFS, "/config2.json", config2);
         }
         //SMS CONTROL
         if (p->name() == "ctrlMessage1") {
@@ -2771,8 +2773,8 @@ Serial.println(rfGroup30);
       }
 
       if(paramOutput == "telegramSwitch"){
-        config["telegramState"] = paramState;
-        writeFile(LittleFS, "/config.json", config);
+        config2["telegramState"] = paramState;
+        writeFile(LittleFS, "/config2.json", config2);
       }
 
     }
