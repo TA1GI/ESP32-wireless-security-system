@@ -32,13 +32,13 @@ Sistem için bir pcb tasarımı yaptım ama çok yetersiz gördüğüm için onu
 
 Sistemden biraz bahsedeyim. Sistemin kodunu dört şekilde yaplaştım aslında hepsinin yaptığı iş aynı.
 
-alarm_sms_arduino klasöründeki kod sadece Arduino uno, Arduino nano gibi kartlarda kullanmak için. Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır.Telegram özeliği yok. Sms gönderip arama yapabilir.
+**_alarm_sms_arduino_** klasöründeki kod sadece Arduino uno, Arduino nano gibi kartlarda kullanmak için. Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır.Telegram özeliği yok. Sms gönderip arama yapabilir.
 
-alarm_sms_esp32 klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır.Telegram özeliği yok. Sms gönderip arama yapabilir.
+**_alarm_sms_esp32_** klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır.Telegram özeliği yok. Sms gönderip arama yapabilir.
 
-alarm_telegram_sms klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır. Sms gönderip arama yapabilir. Telegram özelliği var.
+**_alarm_telegram_sms_** klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır. Sms gönderip arama yapabilir. Telegram özelliği var.
 
-alarm_ui klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü var. Tüm ayarlar web arayüzünden yapılır. Sms gönderip arama yapabilir. Telegram özelliği var. Web arayüzü sayesinde başka özellikleri de var.
+**_alarm_ui_** klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü var. Tüm ayarlar web arayüzünden yapılır. Sms gönderip arama yapabilir. Telegram özelliği var. Web arayüzü sayesinde başka özellikleri de var.
 
 Burada yaptığım anlatımlar genelde alarm_ui klasörüne hitap ediyor.
 
