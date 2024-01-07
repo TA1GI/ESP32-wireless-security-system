@@ -28,6 +28,10 @@ Sistem aktif haldeyken sensörlerden bilgi aldığında belirlenen süre boyunca
 
 Rf verici sayesinde sms veya telegram ile kepenk gibi rf sinyal ile çalışan cihazlar kontrol edilebilir.
 
+
+![schematic](https://github.com/TA1AUB/ESP32-wireless-security-system/assets/11720438/f97dace2-13bc-4a25-9c84-0fbbec292051)
+
+
 ![1](https://github.com/TA1AUB/ESP32-wireless-security-system/assets/11720438/c154d649-65ef-466a-9b93-d762864b9542)
 ![2](https://github.com/TA1AUB/ESP32-wireless-security-system/assets/11720438/57bb3df1-4be6-4b3e-bc84-3bdb4fa384ca)
 ![3](https://github.com/TA1AUB/ESP32-wireless-security-system/assets/11720438/845f913c-56ed-4ac4-b37b-6bbb2cd4cc6a)
