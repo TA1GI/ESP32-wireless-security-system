@@ -12,11 +12,11 @@ Turkish
 
 # ESP32 Kablosuz güvenlik sistemi
 
-Merhaba. İsmim Abdullah. Aslında yazılım bilgim çok çok az düzeyde. Yaptıklarımın çoğunu kopyala yapıştır ile yaptım.Elektronik bilgim de çok çok basit devreleri kopya çekerek tasarlayabilecek düzeyde.
+Merhaba. İsmim Abdullah. Aslında yazılım bilgim çok çok az düzeyde. Yaptıklarımın çoğunu kopyala yapıştır ile yaptım. Elektronik bilgim de çok çok basit devreleri kopya çekerek tasarlayabilecek düzeyde.
 
 Yazdığım kod çok amatör olabilir. Lütfen çekinmeden değişiklikler yapın. 
 
-Sistem aktif durumda iken sisteme eklenen hareket ve kapı pencere sönsörü gibi sensörlerden sinyal algılandığında arayüzde belirlenen süre boyunca siren çalıyor. Belirlenen numaraya yada numaralara sms gönderiyor. Eğer telegram bilgileri girilmişse telegrama mesaj gönderiyor. Belirlenen numaraya arama yapıyor.
+Sistem aktif durumda iken sisteme eklenen hareket ve kapı pencere sensörü gibi sensörlerden sinyal algılandığında arayüzde belirlenen süre boyunca siren çalıyor. Belirlenen numaraya ya da numaralara sms gönderiyor. Eğer telegram bilgileri girilmişse telegrama mesaj gönderiyor. Belirlenen numaraya arama yapıyor.
 
 Sistem pasif durumda iken sisteme eklenen su seviye sensörü, gaz sensörü gibi sensörlerden aldığı bilgiye göre sms (ve) veya telegramdan mesaj gönderiyor.
 
@@ -24,17 +24,17 @@ Sisteme eklenen kumanda(lar), sms (ve) veya telegram mesajları ile sistem kontr
 
 Bu güvenlik sistemini bir arkadaşımın isteği üzerine onun imalathanesi için geliştirdim. Aslında yabancı bir arkadaşın kodunu geliştirerek yaptım.
 
-Sistem şuradaki proje temel alınarak yapılmıştır : https://github.com/atc1441/DiyArduinoESP232AlarmSystem
+Sistem şuradaki proje temel alınarak yapılmıştır: https://github.com/atc1441/DiyArduinoESP232AlarmSystem
 
-Daha sonra chatgpt'den yardım alarak ve bir çok projeyi inceleyerek daha da ileri düzeye taşıdım. Hala daha çok geliştirilmesi gerektiğini düşünüyorum ama bu hali ile bile bence çok kullanışlı.
+Daha sonra chatgpt'den yardım alarak ve birçok projeyi inceleyerek daha da ileri düzeye taşıdım. Hala daha çok geliştirilmesi gerektiğini düşünüyorum ama bu hali ile bile bence çok kullanışlı.
 
 Sistem için bir pcb tasarımı yaptım ama çok yetersiz gördüğüm için onu paylaşmadım. Breadboard üzerinde test edilebilir ama (ben çok sıkıntı çektim) hassas bileşenler olduğu için jumper kablolarla test edilmesini tavsiye ederim. Ben özel yaptığım jumper kablolar ile test ediyorum.
 
-Sistemden biraz bahsedeyim. Sistemin kodunu dört şekilde yaplaştım aslında hepsinin yaptığı iş aynı.
+Sistemden biraz bahsedeyim. Sistemin kodunu dört şekilde paylaştım. Aslında hepsinin yaptığı iş aynı.
 
-**_alarm_sms_arduino_** klasöründeki kod sadece Arduino uno, Arduino nano gibi kartlarda kullanmak için. Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır.Telegram özeliği yok. Sms gönderip arama yapabilir.
+**_alarm_sms_arduino_** klasöründeki kod sadece Arduino uno, Arduino nano gibi kartlarda kullanmak için. Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır. Telegram özeliği yok. Sms gönderip arama yapabilir.
 
-**_alarm_sms_esp32_** klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır.Telegram özeliği yok. Sms gönderip arama yapabilir.
+**_alarm_sms_esp32_** klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır. Telegram özeliği yok. Sms gönderip arama yapabilir.
 
 **_alarm_telegram_sms_** klasöründeki kod esp32 için. (esp8266 da test etmedim ama muhtemelen çalışır.) Bir web arayüzü yok. Tüm ayarlar kod içerisinden yapılır. Sms gönderip arama yapabilir. Telegram özelliği var.
 
@@ -47,11 +47,11 @@ Sistem kablosuz olarak çalışıyor. Temelinde esp32 var. Arduino kodu ile çal
 
 Sistemin ayarları bir web arayüzü sayesinde yapılabiliyor. Detaylı fotoğraflar ekleyeceğim. 
 
-Sistem ilk açıldığında sisteme girilmiş olan modem bilgisi varsa modeme bağlanıyor. Modem tarafından atanan ip adresine girildiğinde kullanıcı adı şifre girilerek sistem arayüzüne ulaşılıyor. Bu ip adresinin ne olduğunu ilk başta öğrenmek için iki yol var modeminizin arayüzünden öğrebilir yada seri monitörden öğrenebilirsiniz. Telegram bilgisi girildikten sonra sistem her açıldığında telegrama modemin atadığı ip adres bilgisi gönderiliyor.
+Sistem ilk açıldığında sisteme girilmiş olan modem bilgisi varsa modeme bağlanıyor. Modem tarafından atanan ip adresine girildiğinde kullanıcı adı şifre girilerek sistem arayüzüne ulaşılıyor. Bu ip adresinin ne olduğunu ilk başta öğrenmek için iki yol var modeminizin arayüzünden öğrenebilir yada seri monitörden öğrenebilirsiniz. Telegram bilgisi girildikten sonra sistem her açıldığında telegrama modemin atadığı ip adres bilgisi gönderiliyor.
 
-Modem bilgisi girilmemişse sistem kendisi modem gibi (access point modu ile) açılıyor. Telefon veya bilgisayardan sistem wifi'ına bağlanılıyor. Şuanda kodda belittiğimiz 192.168.4.22 ip adresine tarayıcıdan girildiğinde kullanıcı adı ve şifre girerek sistemin web arayüzüne ulaşılabiliyor.
+Modem bilgisi girilmemişse sistem kendisi modem gibi (access point modu ile) açılıyor. Telefon veya bilgisayardan sistem wifi'ına bağlanılıyor. Şuanda kodda belirttiğimiz 192.168.4.22 (koddaki ilgili yerden değiştirilebilir) ip adresine tarayıcıdan girildiğinde kullanıcı adı ve şifre girerek sistemin web arayüzüne ulaşılabiliyor.
 
-Sistem aycıca Telegramdan da kontrol edilebiliyor. Öncelikele Telegramdaki BotFather ile bir bot oluşturmanız gerekiyor.(Tamamen ücretsiz.) Nasıl yapılacağının bilgisini internetten kolaylıkla bulabilirsiniz. Size verilen token ve id bilgilerini Web arayüzünden (web arayüzü olamyan versiyonlarda kod üzerinden) sisteme girmelisiniz.
+Sistem ayrıca Telegramdan da kontrol edilebiliyor. Öncelikle Telegramdaki BotFather ile bir bot oluşturmanız gerekiyor. (Tamamen ücretsiz.) Nasıl yapılacağının bilgisini internetten kolaylıkla bulabilirsiniz. Size verilen TOKEN ve ID bilgilerini Web arayüzünden (web arayüzü olmayan versiyonlarda kod üzerinden) sisteme girmelisiniz.
 
 Telegramdan sistemi kontrol etmek için sistem botunuza */baslat* yada */yardim* yazarak kontrol listesine ulaşabilirsiniz.
 
@@ -71,17 +71,17 @@ Telegramdan sistemi kontrol etmek için sistem botunuza */baslat* yada */yardim*
 
 /baslat veya /yardim : Komutları gösterir
 
-Sistemde rf alıcı var. Ben sensörleri daha kolay bulunabilir olduğu için 433mhz alıcı, sensörler  ve kumandalar kullanıyorum. Bu alıcı sayesinde sisteme kablosuz sensörler ekleyebiliyoruz. Hareket sensörü, kapı pencere sensörü, su basma sensörü, duman sensörü, çeşitli gaz sensörleri gibi uzayıp gidiyor bu liste. Şuan sisteme kumandalar da dahil olmak üzere toplam 30 cihaz eklenebiliyor. Nasıl eklendiği sistem arayüzünde anlatılıyor. Sisteme eklenen kumandalar sayesinde sistem kumandalar ile açılıp kapabiliyor. 
+Sistemde rf alıcı var. Ben sensörleri daha kolay bulunabilir olduğu için 433mhz alıcı, sensörler ve kumandalar kullanıyorum. Bu alıcı sayesinde sisteme kablosuz sensörler ekleyebiliyoruz. Hareket sensörü, kapı pencere sensörü, su basma sensörü, duman sensörü, çeşitli gaz sensörleri gibi uzayıp gidiyor bu liste. Şu an sisteme kumandalar da dahil olmak üzere toplam 30 cihaz eklenebiliyor. Nasıl eklendiği sistem arayüzünde anlatılıyor. Sisteme eklenen kumandalar sayesinde sistem kumandalar ile açılıp kapanabiliyor. 
 
-Ssitemde bir de rf verici bulunuyor. Bu verici sayesinde sistem ile kepenk gibi rf kumanda ile kontrol edilen cihazlar kontrol edilebiliyor.
+Sitemde bir de rf verici bulunuyor. Bu verici sayesinde sistem ile kepenk gibi rf kumanda ile kontrol edilen cihazlar kontrol edilebiliyor.
 
-Sistemde gsm modülü var. Ben sim800c kullandım. (Bozulduğunda sim800l kullandım) Bu modül sayesinde Sistemden sms ve arama alınabiliyor. Sms ile sistem uzaktan kontrol edilebiliyor. Sms ile sisteme eklenen rf kumanda ile çalışan cihazlar kontrol edilebiliyor. Bunun için bir kütüphane kullanmadım. Direk AT komutlarını kullandım.
+Sistemde gsm modülü var. Ben sim800c kullandım. (Bozulduğunda sim800l kullandım) Bu modül sayesinde sistemden sms ve arama alınabiliyor. Sms ile sistem uzaktan kontrol edilebiliyor. Sms ile sisteme eklenen rf kumanda ile çalışan cihazlar kontrol edilebiliyor. Bunun için bir kütüphane kullanmadım. Direk AT komutlarını kullandım.
 
 Sistemde birde siren var. Ben araç alarmlarında kullanılan sirenlerden kullandım. Sireni sürmek için irfz44n kullandım.
 
-Sistemin elektrikler kesildiğinde de çalışması için 12v 1.2ah akü kullandım. Elektirikler kesildiğinde direk aküye geçmesini röle ile sağladım. (çok sağlıklı olmadı) Aküyü şarj etmek için XH-M603 Akü Şarj Kontrol modülü kullandım. Aşırı deşarj için XH-M609 modülü kulandım. Ama bu iki modül sağlıklı çalışmadı. 
+Sistemin elektrikler kesildiğinde de çalışması için 12v 1.2ah akü kullandım. Elektrikler kesildiğinde direk aküye geçmesini röle ile sağladım. (çok sağlıklı olmadı) Aküyü şarj etmek için XH-M603 Akü Şarj Kontrol modülü kullandım. Aşırı deşarj için XH-M609 modülü kullandım. Ama bu iki modül sağlıklı çalışmadı. 
 
-Aslında sistem için Güzel bir pcb gerekiyor. Yani tüm modülleri, besleme katı, akü şarj ve aşırı deşarj, siren çıkışı, durum ledleri çıkışı gibi tüm bileşenleri tek kartta barındıran bir devreye ihtiyacım var. Bu konuda desteğe açığım.
+Aslında sistem için güzel bir pcb gerekiyor. Yani tüm modülleri, besleme katı, akü şarj ve aşırı deşarj, siren çıkışı, durum ledleri çıkışı gibi tüm bileşenleri tek kartta barındıran bir devreye ihtiyacım var. Bu konuda desteğe açığım.
 
 
 **Gerekli kütüphaneler:**
