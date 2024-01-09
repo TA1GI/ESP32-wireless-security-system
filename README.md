@@ -16,6 +16,8 @@ Merhaba. İsmim Abdullah. Aslında yazılım bilgim çok çok az düzeyde. Yapt�
 
 Yazdığım kod çok amatör olabilir. Lütfen çekinmeden değişiklikler yapın. 
 
+Sistemde kullanılan sensörler kablosuz rf sensörler. Ben 433mhz kullandım.
+
 Sistem aktif durumda iken sisteme eklenen hareket ve kapı pencere sensörü gibi sensörlerden sinyal algılandığında arayüzde belirlenen süre boyunca siren çalıyor. Belirlenen numaraya ya da numaralara sms gönderiyor. Eğer telegram bilgileri girilmişse telegrama mesaj gönderiyor. Belirlenen numaraya arama yapıyor.
 
 Sistem pasif durumda iken sisteme eklenen su seviye sensörü, gaz sensörü gibi sensörlerden aldığı bilgiye göre sms (ve) veya telegramdan mesaj gönderiyor.
