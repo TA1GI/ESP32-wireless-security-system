@@ -22,7 +22,7 @@ Sistem pasif durumda iken sisteme eklenen su seviye sensörü, gaz sensörü gib
 
 Sisteme eklenen kumanda(lar), sms (ve) veya telegram mesajları ile sistem kontrol edilebilir. Bu ayarlar web arayüzünden yapılabilir.
 
-Bu güvenlik sistemini bir arkadaşımın isteği üzerine onun imalathanesi için geliştirdim. Aslında yabancı bir arkadaşın kodunu geliştirerek yaptım.
+Bu güvenlik sistemini bir arkadaşımın isteği üzerine onun işyeri için geliştirdim. Aslında yabancı bir arkadaşın kodunu geliştirerek yaptım.
 
 Sistem şuradaki proje temel alınarak yapılmıştır: https://github.com/atc1441/DiyArduinoESP232AlarmSystem
 
