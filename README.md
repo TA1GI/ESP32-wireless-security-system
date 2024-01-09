@@ -79,7 +79,7 @@ Sistemde gsm modülü var. Ben sim800c kullandım. (Bozulduğunda sim800l kullan
 
 Sistemde birde siren var. Ben araç alarmlarında kullanılan sirenlerden kullandım. Sireni sürmek için irfz44n kullandım.
 
-Sistemin elektrik kesildiğinde de çalışması için 12v 1.2ah akü kullandım. Elektrikler kesildiğinde direk aküye geçmesini röle ile sağladım. (çok sağlıklı olmadı) Aküyü şarj etmek için XH-M603 Akü Şarj Kontrol modülü kullandım. Aşırı deşarj için XH-M609 modülü kullandım. Ama bu iki modül sağlıklı çalışmadı. 
+Sistemin elektrik kesildiğinde de çalışması için 12v 1.2ah akü kullandım. Elektrik kesildiğinde direk aküye geçmesini röle ile sağladım. (çok sağlıklı olmadı) Aküyü şarj etmek için XH-M603 Akü Şarj Kontrol modülü kullandım. Aşırı deşarj için XH-M609 modülü kullandım. Ama bu iki modül sağlıklı çalışmadı. 
 
 Aslında sistem için güzel bir pcb gerekiyor. Yani tüm modülleri, besleme katı, akü şarj ve aşırı deşarj, siren çıkışı, durum ledleri çıkışı gibi tüm bileşenleri tek kartta barındıran bir devreye ihtiyacım var. Bu konuda desteğe açığım.
 
