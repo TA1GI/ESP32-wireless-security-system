@@ -77,6 +77,10 @@ Sistemde rf alıcı var. Ben sensörleri daha kolay bulunabilir olduğu için 43
 
 Sitemde bir de rf verici bulunuyor. Bu verici sayesinde sistem ile kepenk gibi rf kumanda ile kontrol edilen cihazlar kontrol edilebiliyor.
 
+**_Dikkat!_** Rf modüllerini kesinlikle kristalli olanlardan kullanmanızı tavsiye ediyorum. Diğer modüllerin hem menzili çok çok düşük hemde çok sıkıntı çıkartıyor.
+![RF](https://github.com/TA1AUB/ESP32-wireless-security-system/assets/11720438/9f751e6f-8fe0-4aab-8f28-c9acc0812c61)
+
+
 Sistemde gsm modülü var. Ben sim800c kullandım. (Bozulduğunda sim800l kullandım) Bu modül sayesinde sistemden sms ve arama alınabiliyor. Sms ile sistem uzaktan kontrol edilebiliyor. Sms ile sisteme eklenen rf kumanda ile çalışan cihazlar kontrol edilebiliyor. Bunun için bir kütüphane kullanmadım. Direk AT komutlarını kullandım.
 
 Sistemde birde siren var. Ben araç alarmlarında kullanılan sirenlerden kullandım. Sireni sürmek için irfz44n kullandım.
